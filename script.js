@@ -266,6 +266,226 @@ document.querySelectorAll('.portfolio-carousel').forEach(carousel => {
 });
 
 /* ===========================
+   PARTNERS MARQUEE (SEAMLESS LOOP)
+   =========================== */
+function initPartnersMarquee() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('.partners-marquee').forEach(marquee => {
+        const track = marquee.querySelector('.partners-marquee-track');
+        const groups = track ? track.querySelectorAll('.partners-marquee-group') : [];
+
+        if (!track || groups.length < 2) return;
+
+        let loopDistance = 0;
+        let offset = 0;
+        let lastTimestamp = 0;
+        let rafId = null;
+        let isPaused = false;
+        const speedPxPerSecond = 34;
+
+        const applyTransform = () => {
+            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        };
+
+        const recalc = () => {
+            const nextDistance = groups[0].getBoundingClientRect().width;
+            if (nextDistance > 0) {
+                loopDistance = nextDistance;
+            }
+            if (loopDistance > 0) {
+                offset = offset % loopDistance;
+            }
+            applyTransform();
+        };
+
+        const step = (timestamp) => {
+            if (!lastTimestamp) {
+                lastTimestamp = timestamp;
+            }
+
+            const delta = (timestamp - lastTimestamp) / 1000;
+            lastTimestamp = timestamp;
+
+            if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
+                offset += speedPxPerSecond * delta;
+                if (offset >= loopDistance) {
+                    offset -= loopDistance;
+                }
+                applyTransform();
+            }
+
+            rafId = window.requestAnimationFrame(step);
+        };
+
+        const pause = () => {
+            isPaused = true;
+        };
+
+        const resume = () => {
+            isPaused = false;
+        };
+
+        marquee.addEventListener('mouseenter', pause);
+        marquee.addEventListener('mouseleave', resume);
+        marquee.addEventListener('focusin', pause);
+        marquee.addEventListener('focusout', resume);
+
+        window.addEventListener('resize', recalc);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(recalc);
+        }
+
+        if (reducedMotion.addEventListener) {
+            reducedMotion.addEventListener('change', () => {
+                if (reducedMotion.matches) {
+                    offset = 0;
+                    applyTransform();
+                }
+                lastTimestamp = 0;
+            });
+        }
+
+        recalc();
+
+        if (!rafId) {
+            rafId = window.requestAnimationFrame(step);
+        }
+    });
+}
+
+initPartnersMarquee();
+
+/* ===========================
+   PORTFOLIO WEB CAROUSEL (SEAMLESS LOOP)
+   =========================== */
+function initPortfolioWebCarousel() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('.portfolio-web-carousel').forEach(carousel => {
+        const track = carousel.querySelector('.portfolio-web-carousel-track');
+        const groups = track ? track.querySelectorAll('.portfolio-web-carousel-group') : [];
+        const prevButton = carousel.querySelector('.portfolio-web-carousel-btn-prev');
+        const nextButton = carousel.querySelector('.portfolio-web-carousel-btn-next');
+
+        if (!track || groups.length < 2) return;
+
+        let loopDistance = 0;
+        let offset = 0;
+        let lastTimestamp = 0;
+        let rafId = null;
+        let isPaused = false;
+        const speedPxPerSecond = 26;
+
+        const applyTransform = () => {
+            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        };
+
+        const recalc = () => {
+            const nextDistance = groups[0].getBoundingClientRect().width;
+            if (nextDistance > 0) {
+                loopDistance = nextDistance;
+            }
+            if (loopDistance > 0) {
+                offset = offset % loopDistance;
+            }
+            applyTransform();
+        };
+
+        const getStepDistance = () => {
+            const firstCard = groups[0].querySelector('.portfolio-web-card');
+            if (!firstCard) return 0;
+
+            const cardWidth = firstCard.getBoundingClientRect().width;
+            const groupStyles = window.getComputedStyle(groups[0]);
+            const gap = parseFloat(groupStyles.columnGap || groupStyles.gap || '0') || 0;
+
+            return cardWidth + gap;
+        };
+
+        const nudge = (direction) => {
+            const stepDistance = getStepDistance();
+            if (!stepDistance || !loopDistance) return;
+
+            isPaused = true;
+            offset += direction * stepDistance;
+            offset = ((offset % loopDistance) + loopDistance) % loopDistance;
+            applyTransform();
+
+            window.clearTimeout(carousel._resumeTimeout);
+            carousel._resumeTimeout = window.setTimeout(() => {
+                isPaused = false;
+            }, 1400);
+        };
+
+        const step = (timestamp) => {
+            if (!lastTimestamp) {
+                lastTimestamp = timestamp;
+            }
+
+            const delta = (timestamp - lastTimestamp) / 1000;
+            lastTimestamp = timestamp;
+
+            if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
+                offset += speedPxPerSecond * delta;
+                if (offset >= loopDistance) {
+                    offset -= loopDistance;
+                }
+                applyTransform();
+            }
+
+            rafId = window.requestAnimationFrame(step);
+        };
+
+        const pause = () => {
+            isPaused = true;
+        };
+
+        const resume = () => {
+            isPaused = false;
+        };
+
+        carousel.addEventListener('mouseenter', pause);
+        carousel.addEventListener('mouseleave', resume);
+        carousel.addEventListener('focusin', pause);
+        carousel.addEventListener('focusout', resume);
+
+        if (prevButton) {
+            prevButton.addEventListener('click', () => nudge(-1));
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => nudge(1));
+        }
+
+        window.addEventListener('resize', recalc);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(recalc);
+        }
+
+        if (reducedMotion.addEventListener) {
+            reducedMotion.addEventListener('change', () => {
+                if (reducedMotion.matches) {
+                    offset = 0;
+                    applyTransform();
+                }
+                lastTimestamp = 0;
+            });
+        }
+
+        recalc();
+
+        if (!rafId) {
+            rafId = window.requestAnimationFrame(step);
+        }
+    });
+}
+
+initPortfolioWebCarousel();
+
+/* ===========================
    MOBILE MENU (if needed)
    =========================== */
 function initMobileMenu() {
