@@ -486,6 +486,236 @@ function initPortfolioWebCarousel() {
 initPortfolioWebCarousel();
 
 /* ===========================
+   PORTFOLIO GRAFIKA CAROUSEL (SEAMLESS LOOP)
+   =========================== */
+function initPortfolioGrafikaCarousel() {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll('.portfolio-grafika-carousel').forEach(carousel => {
+        const track = carousel.querySelector('.portfolio-grafika-carousel-track');
+        const groups = track ? track.querySelectorAll('.portfolio-grafika-carousel-group') : [];
+        const prevButton = carousel.querySelector('.portfolio-web-carousel-btn-prev');
+        const nextButton = carousel.querySelector('.portfolio-web-carousel-btn-next');
+
+        if (!track || groups.length < 2) return;
+
+        let loopDistance = 0;
+        let offset = 0;
+        let lastTimestamp = 0;
+        let rafId = null;
+        let isPaused = false;
+        const speedPxPerSecond = 26;
+
+        const applyTransform = () => {
+            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+        };
+
+        const recalc = () => {
+            const nextDistance = groups[0].getBoundingClientRect().width;
+            if (nextDistance > 0) loopDistance = nextDistance;
+            if (loopDistance > 0) offset = offset % loopDistance;
+            applyTransform();
+        };
+
+        const getStepDistance = () => {
+            const firstCard = groups[0].querySelector('.portfolio-grafika-card');
+            if (!firstCard) return 0;
+            const cardWidth = firstCard.getBoundingClientRect().width;
+            const gap = parseFloat(window.getComputedStyle(groups[0]).columnGap || '0') || 0;
+            return cardWidth + gap;
+        };
+
+        const nudge = (direction) => {
+            const stepDistance = getStepDistance();
+            if (!stepDistance || !loopDistance) return;
+            isPaused = true;
+            offset += direction * stepDistance;
+            offset = ((offset % loopDistance) + loopDistance) % loopDistance;
+            applyTransform();
+            window.clearTimeout(carousel._resumeTimeout);
+            carousel._resumeTimeout = window.setTimeout(() => { isPaused = false; }, 1400);
+        };
+
+        const step = (timestamp) => {
+            if (!lastTimestamp) lastTimestamp = timestamp;
+            const delta = (timestamp - lastTimestamp) / 1000;
+            lastTimestamp = timestamp;
+            if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
+                offset += speedPxPerSecond * delta;
+                if (offset >= loopDistance) offset -= loopDistance;
+                applyTransform();
+            }
+            rafId = window.requestAnimationFrame(step);
+        };
+
+        carousel.addEventListener('mouseenter', () => { isPaused = true; });
+        carousel.addEventListener('mouseleave', () => { isPaused = false; });
+        carousel.addEventListener('focusin', () => { isPaused = true; });
+        carousel.addEventListener('focusout', () => { isPaused = false; });
+
+        if (prevButton) prevButton.addEventListener('click', () => nudge(-1));
+        if (nextButton) nextButton.addEventListener('click', () => nudge(1));
+
+        window.addEventListener('resize', recalc);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(recalc);
+
+        recalc();
+        if (!rafId) rafId = window.requestAnimationFrame(step);
+    });
+}
+
+initPortfolioGrafikaCarousel();
+
+/* ===========================
+   TISKOVINY LIGHTBOX
+   =========================== */
+(function () {
+    const modal = document.getElementById('lightboxModal');
+    const img = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('lightboxClose');
+
+    if (!modal || !img) return;
+
+    function openLightbox(src, alt) {
+        img.src = src;
+        img.alt = alt || '';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn && closeBtn.focus();
+    }
+
+    function closeLightbox() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        img.src = '';
+        img.alt = '';
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-lightbox-src]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            openLightbox(btn.dataset.lightboxSrc, btn.dataset.lightboxAlt);
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+
+    modal.querySelectorAll('[data-close-lightbox="true"]').forEach(el => {
+        el.addEventListener('click', closeLightbox);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeLightbox();
+    });
+}());
+
+/* ===========================
+   FLOATING CHAT WIDGET
+   =========================== */
+(function () {
+    const widget = document.getElementById('chatWidget');
+    const fab = document.getElementById('chatFab');
+    const panel = document.getElementById('chatPanel');
+    const closeBtn = document.getElementById('chatPanelClose');
+    const form = document.getElementById('chatForm');
+
+    if (!widget || !fab || !panel) return;
+
+    function openChat() {
+        widget.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        fab.setAttribute('aria-expanded', 'true');
+        const first = panel.querySelector('input, textarea, button');
+        if (first) first.focus();
+    }
+
+    function closeChat() {
+        widget.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        fab.setAttribute('aria-expanded', 'false');
+        fab.focus();
+    }
+
+    fab.addEventListener('click', () => {
+        widget.classList.contains('is-open') ? closeChat() : openChat();
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeChat);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && widget.classList.contains('is-open')) closeChat();
+    });
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.innerHTML = '<p style="text-align:center;padding:1rem 0;color:var(--color-dark);font-weight:700;">Zpráva odeslána!<br><span style="font-weight:400;font-size:0.9rem;">Ozveme se do 48 hodin.</span></p>';
+        });
+    }
+}());
+
+/* ===========================
+   EXIT INTENT POPUP
+   =========================== */
+(function () {
+    const popup = document.getElementById('exitPopup');
+    const backdrop = document.getElementById('exitPopupBackdrop');
+    const closeBtn = document.getElementById('exitPopupClose');
+    const dismissBtn = document.getElementById('exitPopupDismiss');
+    const ctaBtn = document.getElementById('exitPopupCta');
+
+    if (!popup) return;
+
+    const SESSION_KEY = 'bm_exit_popup_shown';
+    let readyToShow = false;
+
+    // Only show if not already shown this session
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    // Arm the trigger after 4 seconds on page
+    window.setTimeout(() => { readyToShow = true; }, 4000);
+
+    function openPopup() {
+        if (!readyToShow || sessionStorage.getItem(SESSION_KEY)) return;
+        sessionStorage.setItem(SESSION_KEY, '1');
+        popup.classList.add('is-open');
+        popup.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn && closeBtn.focus();
+    }
+
+    function closePopup() {
+        popup.classList.remove('is-open');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    // Exit intent: mouse leaves through the top of the viewport
+    document.addEventListener('mouseleave', (e) => {
+        if (e.clientY <= 0) openPopup();
+    });
+
+    if (backdrop) backdrop.addEventListener('click', closePopup);
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (dismissBtn) dismissBtn.addEventListener('click', closePopup);
+
+    // CTA closes popup and scrolls to contact
+    if (ctaBtn) {
+        ctaBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closePopup();
+            const target = document.querySelector('#contact');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+    });
+}());
+
+/* ===========================
    MOBILE MENU (if needed)
    =========================== */
 function initMobileMenu() {
