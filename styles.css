@@ -168,6 +168,38 @@ a {
     height: 40px;
 }
 
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 110;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--color-dark);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-hamburger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-hamburger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -524,7 +556,6 @@ a {
     border: 1px solid #E8E3DB;
     border-radius: 16px;
     text-align: center;
-    overflow: hidden;
 }
 
 .flip-card-front h3 {
@@ -885,6 +916,57 @@ a {
 }
 
 .portfolio-web-carousel-btn-next {
+    right: 0.7rem;
+}
+
+/* ===========================
+   PORTFOLIO – BRANDING CAROUSEL WRAP (mobile arrows)
+   =========================== */
+.portfolio-branding-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.portfolio-branding-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.2rem;
+    height: 3.2rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(191, 162, 122, 0.45);
+    background: rgba(245, 241, 235, 0.94);
+    color: var(--color-dark);
+    box-shadow: 0 8px 18px rgba(12, 35, 32, 0.14);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-branding-btn span {
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: -0.1rem;
+}
+
+.portfolio-branding-btn:hover,
+.portfolio-branding-btn:focus-visible {
+    transform: translateY(-50%) scale(1.04);
+    background: #fff;
+    box-shadow: 0 12px 24px rgba(12, 35, 32, 0.18);
+}
+
+.portfolio-branding-btn--prev {
+    left: 0.7rem;
+}
+
+.portfolio-branding-btn--next {
     right: 0.7rem;
 }
 
@@ -1818,7 +1900,7 @@ button.portfolio-grafika-card--lightbox {
 
     .hero {
         min-height: 95vh;
-        padding: 3.5rem 0 54vw;
+        padding: 3.5rem 0 72vw;
         margin: 0.7rem 0.7rem 0;
         border-radius: 16px;
         background-image: url('header_blackmango_mobile.webp');
@@ -1832,15 +1914,15 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .hero-wordmark-line {
-        font-size: clamp(2.3rem, 11vw, 4.2rem);
+        font-size: clamp(3.2rem, 14vw, 5rem);
     }
 
     .hero-wordmark-icon {
-        width: clamp(5.4rem, 22vw, 9.6rem);
+        width: clamp(7rem, 28vw, 11rem);
     }
 
     .hero-wordmark-mang {
-        padding-right: clamp(2.6rem, 11vw, 5.2rem);
+        padding-right: clamp(3.5rem, 16vw, 6.5rem);
     }
 
     .hero-wordmark-icon {
@@ -1862,8 +1944,8 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .partner-logo {
-        width: clamp(104px, 26vw, 132px);
-        height: 54px;
+        width: clamp(200px, 50vw, 256px);
+        height: 104px;
     }
 
     .nav-menu {
@@ -1874,6 +1956,15 @@ button.portfolio-grafika-card--lightbox {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .contact-team {
+        gap: 1.5rem;
+    }
+
+    .contact-team-avatar {
+        width: 140px;
+        height: 140px;
     }
 
     .footer .container {
@@ -1966,7 +2057,7 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .portfolio-web-carousel {
-        padding: 0 3.2rem;
+        padding: 0 2.8rem;
     }
 
     .portfolio-web-carousel-btn {
@@ -1984,12 +2075,30 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .portfolio-grafika-carousel {
-        padding: 0 3.2rem;
+        padding: 0 2.8rem;
     }
 
     .portfolio-grafika-carousel-group {
         gap: 0.85rem;
         padding-right: 0.85rem;
+    }
+
+    .portfolio-grafika-card {
+        width: calc(100vw - 7rem);
+        height: calc(100vw - 7rem);
+    }
+
+    .portfolio-web-card {
+        width: calc(100vw - 7rem);
+        height: calc(100vw - 7rem);
+    }
+
+    .portfolio-branding-btn {
+        display: inline-flex;
+    }
+
+    .portfolio-branding-wrap .portfolio-cards-grid {
+        padding: 0 3.5rem;
     }
 
     .pdf-preview-dialog {

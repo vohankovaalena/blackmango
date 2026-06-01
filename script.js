@@ -716,20 +716,60 @@ initPortfolioGrafikaCarousel();
 }());
 
 /* ===========================
-   MOBILE MENU (if needed)
+   MOBILE MENU (HAMBURGER)
    =========================== */
-function initMobileMenu() {
-    const navMenu = document.querySelector('.nav-menu');
-    const navBrand = document.querySelector('.nav-brand');
-    
-    // Add mobile hamburger if screen is small
-    if (window.innerWidth <= 768) {
-        // This would be expanded with actual mobile menu functionality
-    }
-}
+(function () {
+    const btn = document.getElementById('navHamburger');
+    const menu = document.getElementById('navMenu');
+    if (!btn || !menu) return;
 
-window.addEventListener('resize', initMobileMenu);
-window.addEventListener('load', initMobileMenu);
+    function closeMenu() {
+        btn.classList.remove('is-open');
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', () => {
+        const open = btn.classList.toggle('is-open');
+        menu.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+    });
+
+    // Close on link click
+    menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    });
+}());
+
+/* ===========================
+   BRANDING CAROUSEL – PREV / NEXT ARROWS (mobile)
+   =========================== */
+(function () {
+    const grid = document.getElementById('brandingGrid');
+    const prev = document.getElementById('brandingPrev');
+    const next = document.getElementById('brandingNext');
+    if (!grid || !prev || !next) return;
+
+    const scrollBy = (dir) => {
+        const slideWidth = grid.querySelector('.portfolio-slide')
+            ? grid.querySelector('.portfolio-slide').offsetWidth
+            : grid.clientWidth;
+        grid.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
+    };
+
+    prev.addEventListener('click', () => scrollBy(-1));
+    next.addEventListener('click', () => scrollBy(1));
+}());
 
 /* ===========================
    PAGE LOAD ANIMATION
