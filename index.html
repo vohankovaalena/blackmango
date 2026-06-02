@@ -3,10 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Mango – Creative Studio</title>
+    <title>Black Mango – Creative Studio | Design, branding a weby</title>
+    <meta name="description" content="Black Mango je kreativní studio z Příbramska. Navrhujeme weby, vizuální identity, grafiku pro sociální sítě a tiskové materiály. Domluvte si bezplatnou konzultaci.">
+    <meta name="author" content="Alena Vohanková, Šárka Měchurová">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://blackmango.cz/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="Black Mango Creative Studio">
+    <meta property="og:title" content="Black Mango – Creative Studio | Design, branding a weby">
+    <meta property="og:description" content="Kreativní studio z Příbramska. Weby, vizuální identita, grafika pro sociální sítě a tiskové materiály. Úvodní konzultace zdarma.">
+    <meta property="og:url" content="https://blackmango.cz/">
+    <meta property="og:image" content="https://blackmango.cz/Black_Mango_icon.webp">
+    <meta property="og:image:alt" content="Black Mango Creative Studio logo">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Black Mango – Creative Studio | Design, branding a weby">
+    <meta name="twitter:description" content="Kreativní studio z Příbramska. Weby, vizuální identita, grafika a tiskové materiály. Úvodní konzultace zdarma.">
+    <meta name="twitter:image" content="https://blackmango.cz/Black_Mango_icon.webp">
+
+    <meta name="theme-color" content="#0C2320">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Black Mango - icon.png">
+    <link rel="apple-touch-icon" href="Black Mango - icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://blackmango.cz/#organization",
+          "name": "Black Mango Creative Studio",
+          "url": "https://blackmango.cz/",
+          "email": "hello@blackmango.cz",
+          "description": "Kreativní studio zaměřené na design, branding, tvorbu webů a digitální marketing.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Příbram",
+            "addressCountry": "CZ"
+          },
+          "areaServed": "CZ",
+          "employee": [
+            { "@type": "Person", "name": "Alena Vohanková" },
+            { "@type": "Person", "name": "Šárka Měchurová" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Naše služby",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tvorba webových stránek" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vizuální identita a branding" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Grafika pro sociální sítě" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tiskové materiály" } }
+            ]
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://blackmango.cz/#webpage",
+          "url": "https://blackmango.cz/",
+          "name": "Black Mango – Creative Studio | Design, branding a weby",
+          "isPartOf": { "@id": "https://blackmango.cz/#organization" },
+          "inLanguage": "cs"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Musím přesně vědět, co chci?", "acceptedAnswer": { "@type": "Answer", "text": "Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně." } },
+            { "@type": "Question", "name": "Pracujete jen s klienty z Příbrami?", "acceptedAnswer": { "@type": "Answer", "text": "Jsme z Příbramska, ale spolupracujeme s klienty v České republice i v zahraničí." } },
+            { "@type": "Question", "name": "Jak dlouho trvá vytvoření webu?", "acceptedAnswer": { "@type": "Answer", "text": "Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů." } }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -30,6 +113,7 @@
     </nav>
 
     <!-- Hero Section -->
+    <main id="main-content">
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -161,7 +245,7 @@
             <div class="services-grid">
 
                 <!-- Card 1 -->
-                <div class="flip-card" tabindex="0">
+                <div class="flip-card" tabindex="0" role="button" aria-label="Design a digitální prostředí">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -197,7 +281,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="flip-card" tabindex="0">
+                <div class="flip-card" tabindex="0" role="button" aria-label="Marketing & strategie">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -225,7 +309,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flip-card" tabindex="0">
+                <div class="flip-card" tabindex="0" role="button" aria-label="Konzultace, mentoring & vzdělávání">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -253,7 +337,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="flip-card" tabindex="0">
+                <div class="flip-card" tabindex="0" role="button" aria-label="Značka & identita">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -585,93 +669,93 @@
             <div class="faq-list">
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                         Musím přesně vědět, co chci?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně.</p></div>
+                    <div class="faq-answer" id="faq-answer-1"><p>Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                         Pracujete jen s klienty z Příbrami, nebo i odjinud?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online. Pokud jste z okolí Příbrami a preferujete osobní setkání, rádi se domluvíme.</p></div>
+                    <div class="faq-answer" id="faq-answer-2"><p>Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online. Pokud jste z okolí Příbrami a preferujete osobní setkání, rádi se domluvíme.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                         Proč potřebuji logo nebo jednotný vizuální styl?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává.</p></div>
+                    <div class="faq-answer" id="faq-answer-3"><p>Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
                         Postaráte se i o správu mých sociálních sítí?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně. Záleží na tom, co vám víc vyhovuje.</p></div>
+                    <div class="faq-answer" id="faq-answer-4"><p>Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně. Záleží na tom, co vám víc vyhovuje.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
                         Čím se lišíte od jiné agentury nebo freelancera?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy, takže výsledek dává smysl z více stran najednou.</p></div>
+                    <div class="faq-answer" id="faq-answer-5"><p>Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy, takže výsledek dává smysl z více stran najednou.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
                         Co je to brand manuál?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně.</p></div>
+                    <div class="faq-answer" id="faq-answer-6"><p>Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
                         Potřebuji web, když mám sociální sítě?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně a zákazníci vás na něm hledají, když chtějí vědět víc. Ideální kombinace je web jako základ a sociální sítě jako cesta k němu.</p></div>
+                    <div class="faq-answer" id="faq-answer-7"><p>Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně a zákazníci vás na něm hledají, když chtějí vědět víc. Ideální kombinace je web jako základ a sociální sítě jako cesta k němu.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">
                         Jak poznám, že mi grafika nebo web skutečně pomáhají?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí, referují vás dál a vy nemusíte každému znovu vysvětlovat, co děláte. To jsou znaky, že vizuál a obsah pracují za vás.</p></div>
+                    <div class="faq-answer" id="faq-answer-8"><p>Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí, referují vás dál a vy nemusíte každému znovu vysvětlovat, co děláte. To jsou znaky, že vizuál a obsah pracují za vás.</p></div>
                 </div>
 
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-9">
                         Jak dlouho trvá vytvoření webu?
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer"><p>Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů. Vaši konkrétní situaci probereme na <a href="#contact">konzultaci</a>.</p></div>
+                    <div class="faq-answer" id="faq-answer-9"><p>Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů. Vaši konkrétní situaci probereme na <a href="#contact">konzultaci</a>.</p></div>
                 </div>
 
             </div>
@@ -687,18 +771,23 @@
             <div class="contact-content">
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Jméno a příjmení" required>
+                        <label for="contact-name" class="sr-only">Jméno a příjmení</label>
+                        <input type="text" id="contact-name" name="name" placeholder="Jméno a příjmení" required autocomplete="name">
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Email" required>
+                        <label for="contact-email" class="sr-only">Email</label>
+                        <input type="email" id="contact-email" name="email" placeholder="Email" required autocomplete="email">
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Telefonní číslo (nepovinné)">
+                        <label for="contact-phone" class="sr-only">Telefonní číslo (nepovinné)</label>
+                        <input type="tel" id="contact-phone" name="phone" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="5" required></textarea>
+                        <label for="contact-message" class="sr-only">Popis projektu</label>
+                        <textarea id="contact-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="cta-button">Poslat zprávu</button>
+                    <p class="form-gdpr-note">Odesláním souhlasíte se zpracováním osobních údajů. <a href="gdpr.html" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>.</p>
                 </form>
 
                 <div class="contact-info">
@@ -737,6 +826,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -744,6 +835,7 @@
             <div class="footer-legal">
                 <span>Ing. Alena Vohanková, IČO: 19345534</span>
                 <span>Mgr. Šárka Měchurová, IČO: 24471178</span>
+                <a href="gdpr.html">Ochrana osobních údajů</a>
             </div>
         </div>
     </footer>
@@ -781,18 +873,23 @@
             <div class="chat-panel-body">
                 <form class="chat-form" id="chatForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Jméno a příjmení" required>
+                        <label for="chat-name" class="sr-only">Jméno a příjmení</label>
+                        <input type="text" id="chat-name" name="name" placeholder="Jméno a příjmení" required autocomplete="name">
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Email" required>
+                        <label for="chat-email" class="sr-only">Email</label>
+                        <input type="email" id="chat-email" name="email" placeholder="Email" required autocomplete="email">
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Telefonní číslo (nepovinné)">
+                        <label for="chat-phone" class="sr-only">Telefonní číslo (nepovinné)</label>
+                        <input type="tel" id="chat-phone" name="phone" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="4" required></textarea>
+                        <label for="chat-message" class="sr-only">Popis projektu</label>
+                        <textarea id="chat-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="4" required></textarea>
                     </div>
                     <button type="submit" class="chat-form-submit">Odeslat zprávu</button>
+                    <p class="form-gdpr-note">Odesláním souhlasíte se zpracováním osobních údajů. <a href="gdpr.html" target="_blank" rel="noopener">Více info</a>.</p>
                 </form>
             </div>
         </div>
