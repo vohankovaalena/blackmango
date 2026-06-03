@@ -9,14 +9,22 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://blackmango.cz/">
 
+    <!-- Hreflang – bilingual SEO -->
+    <link rel="alternate" hreflang="cs" href="https://blackmango.cz/">
+    <link rel="alternate" hreflang="en" href="https://blackmango.cz/en/">
+    <link rel="alternate" hreflang="x-default" href="https://blackmango.cz/">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="cs_CZ">
+    <meta property="og:locale:alternate" content="en_GB">
     <meta property="og:site_name" content="Black Mango Creative Studio">
     <meta property="og:title" content="Black Mango – Creative Studio | Design, branding a weby">
     <meta property="og:description" content="Kreativní studio z Příbramska. Weby, vizuální identita, grafika pro sociální sítě a tiskové materiály. Úvodní konzultace zdarma.">
     <meta property="og:url" content="https://blackmango.cz/">
     <meta property="og:image" content="https://blackmango.cz/Black_Mango_icon.webp">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
     <meta property="og:image:alt" content="Black Mango Creative Studio logo">
 
     <!-- Twitter Card -->
@@ -55,7 +63,7 @@
             "addressLocality": "Příbram",
             "addressCountry": "CZ"
           },
-          "areaServed": "CZ",
+          "areaServed": ["CZ", "SK", "Worldwide"],
           "employee": [
             { "@type": "Person", "name": "Alena Vohanková" },
             { "@type": "Person", "name": "Šárka Měchurová" }
@@ -67,7 +75,9 @@
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tvorba webových stránek" } },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vizuální identita a branding" } },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Grafika pro sociální sítě" } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tiskové materiály" } }
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tiskové materiály" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Konzultace a mentoring" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing a online reklama" } }
             ]
           }
         },
@@ -77,13 +87,20 @@
           "url": "https://blackmango.cz/",
           "name": "Black Mango – Creative Studio | Design, branding a weby",
           "isPartOf": { "@id": "https://blackmango.cz/#organization" },
-          "inLanguage": "cs"
+          "inLanguage": "cs",
+          "alternateLanguage": { "@type": "Language", "name": "English", "alternateName": "en" }
         },
         {
           "@type": "FAQPage",
           "mainEntity": [
             { "@type": "Question", "name": "Musím přesně vědět, co chci?", "acceptedAnswer": { "@type": "Answer", "text": "Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně." } },
-            { "@type": "Question", "name": "Pracujete jen s klienty z Příbrami?", "acceptedAnswer": { "@type": "Answer", "text": "Jsme z Příbramska, ale spolupracujeme s klienty v České republice i v zahraničí." } },
+            { "@type": "Question", "name": "Pracujete jen s klienty z Příbrami, nebo i odjinud?", "acceptedAnswer": { "@type": "Answer", "text": "Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online." } },
+            { "@type": "Question", "name": "Proč potřebuji logo nebo jednotný vizuální styl?", "acceptedAnswer": { "@type": "Answer", "text": "Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává." } },
+            { "@type": "Question", "name": "Postaráte se i o správu mých sociálních sítí?", "acceptedAnswer": { "@type": "Answer", "text": "Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně." } },
+            { "@type": "Question", "name": "Čím se lišíte od jiné agentury nebo freelancera?", "acceptedAnswer": { "@type": "Answer", "text": "Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy." } },
+            { "@type": "Question", "name": "Co je to brand manuál?", "acceptedAnswer": { "@type": "Answer", "text": "Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně." } },
+            { "@type": "Question", "name": "Potřebuji web, když mám sociální sítě?", "acceptedAnswer": { "@type": "Answer", "text": "Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně." } },
+            { "@type": "Question", "name": "Jak poznám, že mi grafika nebo web skutečně pomáhají?", "acceptedAnswer": { "@type": "Answer", "text": "Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí a referují vás dál." } },
             { "@type": "Question", "name": "Jak dlouho trvá vytvoření webu?", "acceptedAnswer": { "@type": "Answer", "text": "Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů." } }
           ]
         }
@@ -98,17 +115,22 @@
             <div class="nav-brand">
                 <img src="Black Mango - main logo.webp" alt="Black Mango Creative Studio" class="nav-logo">
             </div>
-            <button class="nav-hamburger" id="navHamburger" aria-label="Otevřít menu" aria-expanded="false">
+            <button class="nav-hamburger" id="navHamburger" data-i18n-aria="nav.hamburger.aria" aria-label="Otevřít menu" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#services">Služby</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#about">O nás</a></li>
-                <li><a href="#references">Reference</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#services" data-i18n="nav.services">Služby</a></li>
+                <li><a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a></li>
+                <li><a href="#about" data-i18n="nav.about">O nás</a></li>
+                <li><a href="#references" data-i18n="nav.references">Reference</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
             </ul>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn lang-btn--active" data-lang="cz" aria-label="Přepnout na češtinu" aria-pressed="true">CZ</button>
+                <span class="lang-sep" aria-hidden="true">|</span>
+                <button class="lang-btn" data-lang="en" aria-label="Switch to English" aria-pressed="false">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -121,16 +143,16 @@
                     <span class="hero-wordmark-line hero-wordmark-black">Black</span>
                     <span class="hero-wordmark-line hero-wordmark-mang">Mang<img src="BlackMango_ikona_vektor.svg" alt="" class="hero-wordmark-icon" aria-hidden="true" decoding="async"></span>
                 </h1>
-                <h2 class="hero-studio-title">Kreativní studio</h2>
-                <p>Za každou úspěšnou značkou stojí promyšlený design, dobrý obsah a jasná strategie. A od toho jsme tady my.</p>
-                <a href="#contact" class="cta-button">Domluvit konzultaci</a>
+                <h2 class="hero-studio-title" data-i18n="hero.subtitle">Kreativní studio</h2>
+                <p data-i18n="hero.text">Za každou úspěšnou značkou stojí promyšlený design, dobrý obsah a jasná strategie. A od toho jsme tady my.</p>
+                <a href="#contact" class="cta-button" data-i18n="hero.cta">Domluvit konzultaci</a>
             </div>
         </div>
         <img class="hero-photo" src="black_mango_jednatelky.webp" alt="" aria-hidden="true" decoding="async">
     </section>
 
     <section class="partners-marquee" aria-label="Spolupracujeme">
-        <p class="partners-marquee-title">Spolupracujeme</p>
+        <p class="partners-marquee-title" data-i18n="partners.title">Spolupracujeme</p>
         <div class="partners-marquee-viewport">
             <div class="partners-marquee-track">
                 <div class="partners-marquee-group">
@@ -241,19 +263,19 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2>Naše služby</h2>
-            <p class="services-hint"><span class="hint-desktop">Najeďte myší na kartu pro více informací</span><span class="hint-mobile">Klikněte na kartu pro více informací</span></p>
+            <h2 data-i18n="services.heading">Naše služby</h2>
+            <p class="services-hint"><span class="hint-desktop" data-i18n="services.hint.desktop">Najeďte myší na kartu pro více informací</span><span class="hint-mobile" data-i18n="services.hint.mobile">Klikněte na kartu pro více informací</span></p>
             <div class="services-grid">
 
                 <!-- Card 1 -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Design a digitální prostředí">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card1.aria" aria-label="Design a digitální prostředí">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
                                 <img src="ikony_nase_sluzby/design_a_digi_prostredi.svg" alt="" width="64" height="64" aria-hidden="true">
                             </div>
-                            <h3>Design a digitální prostředí</h3>
-                            <p class="flip-question">Jak mít web a materiály, které budou působit profesionálně a přehledně?</p>
+                            <h3 data-i18n="card1.heading">Design a digitální prostředí</h3>
+                            <p class="flip-question" data-i18n="card1.question">Jak mít web a materiály, které budou působit profesionálně a přehledně?</p>
                             <div class="peel-corner">
                                 <svg viewBox="0 0 60 60" width="60" height="60">
                                     <defs>
@@ -265,30 +287,30 @@
                                     <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel1)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label">klikněte<br>na kartu</span>
+                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h3>Design a digitální prostředí</h3>
+                            <h3 data-i18n="card1.heading">Design a digitální prostředí</h3>
                             <ul class="service-list">
-                                <li>Návrh a tvorba webových stránek</li>
-                                <li>Grafika pro sociální sítě</li>
-                                <li>Tiskové materiály</li>
-                                <li>Prezentace & šablony</li>
+                                <li data-i18n="card1.item1">Návrh a tvorba webových stránek</li>
+                                <li data-i18n="card1.item2">Grafika pro sociální sítě</li>
+                                <li data-i18n="card1.item3">Tiskové materiály</li>
+                                <li data-i18n="card1.item4">Prezentace &amp; šablony</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Marketing & strategie">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card2.aria" aria-label="Marketing & strategie">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
                                 <img src="ikony_nase_sluzby/marketing.svg" alt="" width="64" height="64" aria-hidden="true">
                             </div>
-                            <h3>Marketing & strategie</h3>
-                            <p class="flip-question">Jak efektivně získávat nové zákazníky online?</p>
+                            <h3 data-i18n="card2.heading">Marketing &amp; strategie</h3>
+                            <p class="flip-question" data-i18n="card2.question">Jak efektivně získávat nové zákazníky online?</p>
                             <div class="peel-corner">
                                 <svg viewBox="0 0 60 60" width="60" height="60">
                                     <defs>
@@ -300,29 +322,29 @@
                                     <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel2)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label">klikněte<br>na kartu</span>
+                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h3>Marketing & strategie</h3>
+                            <h3 data-i18n="card2.heading">Marketing &amp; strategie</h3>
                             <ul class="service-list">
-                                <li>Strategie komunikace</li>
-                                <li>Správa sociálních sítí</li>
-                                <li>Placená online reklama</li>
+                                <li data-i18n="card2.item1">Strategie komunikace</li>
+                                <li data-i18n="card2.item2">Správa sociálních sítí</li>
+                                <li data-i18n="card2.item3">Placená online reklama</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Konzultace, mentoring & vzdělávání">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card3.aria" aria-label="Konzultace, mentoring & vzdělávání">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
                                 <img src="ikony_nase_sluzby/konzultace.svg" alt="" width="64" height="64" aria-hidden="true">
                             </div>
-                            <h3>Konzultace, mentoring & vzdělávání</h3>
-                            <p class="flip-question">Chcete mít svůj marketing pod kontrolou? Naučíme Vás přesně to, co potřebujete.</p>
+                            <h3 data-i18n="card3.heading">Konzultace, mentoring &amp; vzdělávání</h3>
+                            <p class="flip-question" data-i18n="card3.question">Chcete mít svůj marketing pod kontrolou? Naučíme Vás přesně to, co potřebujete.</p>
                             <div class="peel-corner">
                                 <svg viewBox="0 0 60 60" width="60" height="60">
                                     <defs>
@@ -334,28 +356,28 @@
                                     <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel3)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label">klikněte<br>na kartu</span>
+                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h3>Konzultace, mentoring & vzdělávání</h3>
+                            <h3 data-i18n="card3.heading">Konzultace, mentoring &amp; vzdělávání</h3>
                             <ul class="service-list">
-                                <li>Individuální konzultace na míru</li>
-                                <li>Kurzy zaměřené na práci se sociálními sítěmi</li>
+                                <li data-i18n="card3.item1">Individuální konzultace na míru</li>
+                                <li data-i18n="card3.item2">Kurzy zaměřené na práci se sociálními sítěmi</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="flip-card" tabindex="0" role="button" aria-label="Značka & identita">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card4.aria" aria-label="Značka & identita">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
                                 <img src="ikony_nase_sluzby/znacka.svg" alt="" width="64" height="64" aria-hidden="true">
                             </div>
-                            <h3>Značka & identita</h3>
-                            <p class="flip-question">Jak vybudovat značku, která je snadno rozpoznatelná a důvěryhodná?</p>
+                            <h3 data-i18n="card4.heading">Značka &amp; identita</h3>
+                            <p class="flip-question" data-i18n="card4.question">Jak vybudovat značku, která je snadno rozpoznatelná a důvěryhodná?</p>
                             <div class="peel-corner">
                                 <svg viewBox="0 0 60 60" width="60" height="60">
                                     <defs>
@@ -367,15 +389,15 @@
                                     <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel4)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label">klikněte<br>na kartu</span>
+                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <h3>Značka & identita</h3>
+                            <h3 data-i18n="card4.heading">Značka &amp; identita</h3>
                             <ul class="service-list">
-                                <li>Branding a rebranding</li>
-                                <li>Tvorba loga</li>
-                                <li>Sjednocení vizuální identity</li>
+                                <li data-i18n="card4.item1">Branding a rebranding</li>
+                                <li data-i18n="card4.item2">Tvorba loga</li>
+                                <li data-i18n="card4.item3">Sjednocení vizuální identity</li>
                             </ul>
                         </div>
                     </div>
@@ -388,35 +410,35 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2>Portfolio</h2>
-            <p class="section-subtitle">Vybrané projekty, na nichž jsme pracovali</p>
+            <h2 data-i18n="portfolio.heading">Portfolio</h2>
+            <p class="section-subtitle" data-i18n="portfolio.subtitle">Vybrané projekty, na nichž jsme pracovali</p>
             <div class="portfolio-stack">
                 <article class="portfolio-carousel-block">
-                    <h3 class="portfolio-carousel-title">Značky, kterým jsme vytvořily vizuální identitu</h3>
+                    <h3 class="portfolio-carousel-title" data-i18n="portfolio.branding.title">Značky, kterým jsme vytvořily vizuální identitu</h3>
                     <div class="portfolio-branding-wrap">
-                        <button class="portfolio-branding-btn portfolio-branding-btn--prev" id="brandingPrev" aria-label="Předchozí"><span aria-hidden="true">‹</span></button>
+                        <button class="portfolio-branding-btn portfolio-branding-btn--prev" id="brandingPrev" data-i18n-aria="portfolio.prev.aria" aria-label="Předchozí"><span aria-hidden="true">‹</span></button>
                         <div class="portfolio-cards-grid" id="brandingGrid">
-                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/P2 Project &amp; Check Nem brand manuál (1).pdf" aria-label="Zobrazit náhled PDF portfolio 1">
+                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/P2 Project &amp; Check Nem brand manuál (1).pdf" data-i18n-aria="portfolio.pdf1.aria" aria-label="Zobrazit náhled PDF portfolio 1">
                             <img src="potfolio_branding/portfolio1.webp" alt="Portfolio branding 1" loading="lazy">
                         </button>
-                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/NF Helikoptéra - brand guidelines (1).pdf" aria-label="Zobrazit náhled PDF portfolio 2">
+                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/NF Helikoptéra - brand guidelines (1).pdf" data-i18n-aria="portfolio.pdf2.aria" aria-label="Zobrazit náhled PDF portfolio 2">
                             <img src="potfolio_branding/portfolio2.webp" alt="Portfolio branding 2" loading="lazy">
                         </button>
-                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/La Familia - BrandManuál (1).pdf" aria-label="Zobrazit náhled PDF portfolio 3">
+                        <button class="portfolio-slide" type="button" data-pdf="potfolio_branding/La Familia - BrandManuál (1).pdf" data-i18n-aria="portfolio.pdf3.aria" aria-label="Zobrazit náhled PDF portfolio 3">
                             <img src="potfolio_branding/portfolio3.webp" alt="Portfolio branding 3" loading="lazy">
                         </button>
                     </div>
-                        <button class="portfolio-branding-btn portfolio-branding-btn--next" id="brandingNext" aria-label="Další"><span aria-hidden="true">›</span></button>
+                        <button class="portfolio-branding-btn portfolio-branding-btn--next" id="brandingNext" data-i18n-aria="portfolio.next.aria" aria-label="Další"><span aria-hidden="true">›</span></button>
                     </div>
                 </article>
 
                 <article class="portfolio-carousel-block portfolio-grafika-carousel-block">
-                    <h3 class="portfolio-carousel-title">Digitální grafika a sociální sítě</h3>
-                    <div class="portfolio-grafika-carousel" aria-label="Ukázky digitální grafiky">
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" aria-label="Předchozí">
+                    <h3 class="portfolio-carousel-title" data-i18n="portfolio.grafika.title">Digitální grafika a sociální sítě</h3>
+                    <div class="portfolio-grafika-carousel" data-i18n-aria="portfolio.grafika.aria" aria-label="Ukázky digitální grafiky">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" data-i18n-aria="portfolio.prev.aria" aria-label="Předchozí">
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" aria-label="Další">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" data-i18n-aria="portfolio.next.aria" aria-label="Další">
                             <span aria-hidden="true">›</span>
                         </button>
                         <div class="portfolio-grafika-carousel-viewport">
@@ -471,12 +493,12 @@
                 </article>
 
                 <article class="portfolio-carousel-block portfolio-web-carousel-block">
-                    <h3 class="portfolio-carousel-title">Weby, které díky nám dostaly šmrnc</h3>
-                    <div class="portfolio-web-carousel" aria-label="Ukázky webů z portfolia">
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" aria-label="Předchozí web">
+                    <h3 class="portfolio-carousel-title" data-i18n="portfolio.web.title">Weby, které díky nám dostaly šmrnc</h3>
+                    <div class="portfolio-web-carousel" data-i18n-aria="portfolio.web.aria" aria-label="Ukázky webů z portfolia">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" data-i18n-aria="portfolio.web.prev.aria" aria-label="Předchozí web">
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" aria-label="Další web">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" data-i18n-aria="portfolio.web.next.aria" aria-label="Další web">
                             <span aria-hidden="true">›</span>
                         </button>
                         <div class="portfolio-web-carousel-viewport">
@@ -556,66 +578,66 @@
                 </article>
 
                 <article class="portfolio-carousel-block portfolio-grafika-carousel-block">
-                    <h3 class="portfolio-carousel-title">Tiskoviny</h3>
-                    <div class="portfolio-grafika-carousel" aria-label="Ukázky tiskovin">
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" aria-label="Předchozí">
+                    <h3 class="portfolio-carousel-title" data-i18n="portfolio.print.title">Tiskoviny</h3>
+                    <div class="portfolio-grafika-carousel" data-i18n-aria="portfolio.print.aria" aria-label="Ukázky tiskovin">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" data-i18n-aria="portfolio.prev.aria" aria-label="Předchozí">
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" aria-label="Další">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" data-i18n-aria="portfolio.next.aria" aria-label="Další">
                             <span aria-hidden="true">›</span>
                         </button>
                         <div class="portfolio-grafika-carousel-viewport">
                             <div class="portfolio-grafika-carousel-track">
                                 <div class="portfolio-grafika-carousel-group">
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/napojak_lafamilia.webp" data-lightbox-alt="Nápojový lístek – La Familia" aria-label="Zobrazit nápojový lístek La Familia">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/napojak_lafamilia.webp" data-lightbox-alt="Nápojový lístek – La Familia" data-i18n-aria="print.btn1.aria" aria-label="Zobrazit nápojový lístek La Familia">
                                         <img src="tiskoviny/napojak_lafamilia.webp" alt="Nápojový lístek – La Familia" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Nápojový lístek – La Familia</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label1">Nápojový lístek – La Familia</span>
                                     </button>
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/B4_Fashion_design_balicku.webp" data-lightbox-alt="B4 Fashion – design balíčků" aria-label="Zobrazit B4 Fashion – design balíčků">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/B4_Fashion_design_balicku.webp" data-lightbox-alt="B4 Fashion – design balíčků" data-i18n-aria="print.btn2.aria" aria-label="Zobrazit B4 Fashion – design balíčků">
                                         <img src="tiskoviny/B4_Fashion_design_balicku.webp" alt="B4 Fashion – design balíčků" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">B4 Fashion – design balíčků</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label2">B4 Fashion – design balíčků</span>
                                     </button>
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/Svatební_pozvánka.webp" data-lightbox-alt="Svatební pozvánka" aria-label="Zobrazit svatební pozvánku">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/Svatební_pozvánka.webp" data-lightbox-alt="Svatební pozvánka" data-i18n-aria="print.btn3.aria" aria-label="Zobrazit svatební pozvánku">
                                         <img src="tiskoviny/Svatební_pozvánka.webp" alt="Svatební pozvánka" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Svatební pozvánka</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label3">Svatební pozvánka</span>
                                     </button>
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/Zpravodaj_obce_Dubno.webp" data-lightbox-alt="Zpravodaj obce Dubno" aria-label="Zobrazit zpravodaj obce Dubno">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/Zpravodaj_obce_Dubno.webp" data-lightbox-alt="Zpravodaj obce Dubno" data-i18n-aria="print.btn4.aria" aria-label="Zobrazit zpravodaj obce Dubno">
                                         <img src="tiskoviny/Zpravodaj_obce_Dubno.webp" alt="Zpravodaj obce Dubno" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Zpravodaj obce Dubno</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label4">Zpravodaj obce Dubno</span>
                                     </button>
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/dárkový_poukaz_fyziobodyprofik.webp" data-lightbox-alt="Dárkový poukaz – Fyzio Body Profik" aria-label="Zobrazit dárkový poukaz Fyzio Body Profik">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/dárkový_poukaz_fyziobodyprofik.webp" data-lightbox-alt="Dárkový poukaz – Fyzio Body Profik" data-i18n-aria="print.btn5.aria" aria-label="Zobrazit dárkový poukaz Fyzio Body Profik">
                                         <img src="tiskoviny/dárkový_poukaz_fyziobodyprofik.webp" alt="Dárkový poukaz – Fyzio Body Profik" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Dárkový poukaz – Fyzio Body Profik</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label5">Dárkový poukaz – Fyzio Body Profik</span>
                                     </button>
-                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/vizitka_P2Projekt.webp" data-lightbox-alt="Vizitka – P2 Projekt" aria-label="Zobrazit vizitku P2 Projekt">
+                                    <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" data-lightbox-src="tiskoviny/vizitka_P2Projekt.webp" data-lightbox-alt="Vizitka – P2 Projekt" data-i18n-aria="print.btn6.aria" aria-label="Zobrazit vizitku P2 Projekt">
                                         <img src="tiskoviny/vizitka_P2Projekt.webp" alt="Vizitka – P2 Projekt" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Vizitka – P2 Projekt</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label6">Vizitka – P2 Projekt</span>
                                     </button>
                                 </div>
                                 <div class="portfolio-grafika-carousel-group" aria-hidden="true">
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/napojak_lafamilia.webp" data-lightbox-alt="Nápojový lístek – La Familia">
                                         <img src="tiskoviny/napojak_lafamilia.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Nápojový lístek – La Familia</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label1">Nápojový lístek – La Familia</span>
                                     </button>
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/B4_Fashion_design_balicku.webp" data-lightbox-alt="B4 Fashion – design balíčků">
                                         <img src="tiskoviny/B4_Fashion_design_balicku.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">B4 Fashion – design balíčků</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label2">B4 Fashion – design balíčků</span>
                                     </button>
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/Svatební_pozvánka.webp" data-lightbox-alt="Svatební pozvánka">
                                         <img src="tiskoviny/Svatební_pozvánka.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Svatební pozvánka</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label3">Svatební pozvánka</span>
                                     </button>
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/Zpravodaj_obce_Dubno.webp" data-lightbox-alt="Zpravodaj obce Dubno">
                                         <img src="tiskoviny/Zpravodaj_obce_Dubno.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Zpravodaj obce Dubno</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label4">Zpravodaj obce Dubno</span>
                                     </button>
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/dárkový_poukaz_fyziobodyprofik.webp" data-lightbox-alt="Dárkový poukaz – Fyzio Body Profik">
                                         <img src="tiskoviny/dárkový_poukaz_fyziobodyprofik.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Dárkový poukaz – Fyzio Body Profik</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label5">Dárkový poukaz – Fyzio Body Profik</span>
                                     </button>
                                     <button class="portfolio-grafika-card portfolio-grafika-card--lightbox" type="button" tabindex="-1" data-lightbox-src="tiskoviny/vizitka_P2Projekt.webp" data-lightbox-alt="Vizitka – P2 Projekt">
                                         <img src="tiskoviny/vizitka_P2Projekt.webp" alt="" loading="lazy" decoding="async">
-                                        <span class="portfolio-grafika-card-label">Vizitka – P2 Projekt</span>
+                                        <span class="portfolio-grafika-card-label" data-i18n="print.label6">Vizitka – P2 Projekt</span>
                                     </button>
                                 </div>
                             </div>
@@ -627,9 +649,9 @@
     </section>
 
     <!-- Lightbox Modal -->
-    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Náhled obrázku" aria-hidden="true">
+    <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" data-i18n-aria="lightbox.aria" aria-label="Náhled obrázku" aria-hidden="true">
         <div class="lightbox-backdrop" data-close-lightbox="true"></div>
-        <button class="lightbox-close" id="lightboxClose" aria-label="Zavřít náhled">&#x2715;</button>
+        <button class="lightbox-close" id="lightboxClose" data-i18n-aria="lightbox.close.aria" aria-label="Zavřít náhled">&#x2715;</button>
         <div class="lightbox-content">
             <img class="lightbox-img" id="lightboxImg" src="" alt="">
         </div>
@@ -639,17 +661,17 @@
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
-                <h2>O nás</h2>
+                <h2 data-i18n="about.heading">O nás</h2>
                 <div class="about-text">
-                    <p>Black Mango vzniklo z potřeby <strong>dělat věci jinak</strong>. Spojily jsme zkušenosti z různých oblastí a vytvořily prostor, kde <strong>grafika, obsah a přístup ke klientovi</strong> jdou ruku v ruce.</p>
-                    <p>Ke každému projektu přistupujeme <strong>individuálně</strong>. Chceme pochopit, co skutečně potřebujete, a pak to zpracovat pečlivě a s rozvahou. <strong>Projekt vedeme my</strong>, hlídáme termíny a to, co si domluvíme, platí. <strong>Vy se můžete soustředit na svůj byznys.</strong></p>
-                    <p>Dobrá spolupráce podle nás funguje oběma směry. Naši práci přizpůsobujeme vašim potřebám, ale když nám něco nedává smysl, <strong>řekneme to na rovinu</strong>. Ne proto, abychom měli pravdu, ale proto, že <strong>nám záleží na výsledku.</strong> Pro naše klienty jsme <strong>STRATEGICKÝM PARTNEREM</strong>.</p>
-                    <p><strong>PŘINÁŠÍME NĚCO NAVÍC.</strong> Provázíme vás od prvního nápadu až po výsledek, který vidíte. Proplacená faktura pro nás není tečka za spoluprácí. <strong>Fandíme svým klientům dál, sledujeme, jak se jim daří, a jsme tu, když potřebují poradit nebo posunout věci o krok dál.</strong></p>
+                    <p data-i18n-html="about.p1">Black Mango vzniklo z potřeby <strong>dělat věci jinak</strong>. Spojily jsme zkušenosti z různých oblastí a vytvořily prostor, kde <strong>grafika, obsah a přístup ke klientovi</strong> jdou ruku v ruce.</p>
+                    <p data-i18n-html="about.p2">Ke každému projektu přistupujeme <strong>individuálně</strong>. Chceme pochopit, co skutečně potřebujete, a pak to zpracovat pečlivě a s rozvahou. <strong>Projekt vedeme my</strong>, hlídáme termíny a to, co si domluvíme, platí. <strong>Vy se můžete soustředit na svůj byznys.</strong></p>
+                    <p data-i18n-html="about.p3">Dobrá spolupráce podle nás funguje oběma směry. Naši práci přizpůsobujeme vašim potřebám, ale když nám něco nedává smysl, <strong>řekneme to na rovinu</strong>. Ne proto, abychom měli pravdu, ale proto, že <strong>nám záleží na výsledku.</strong> Pro naše klienty jsme <strong>STRATEGICKÝM PARTNEREM</strong>.</p>
+                    <p data-i18n-html="about.p4"><strong>PŘINÁŠÍME NĚCO NAVÍC.</strong> Provázíme vás od prvního nápadu až po výsledek, který vidíte. Proplacená faktura pro nás není tečka za spoluprací. <strong>Fandíme svým klientům dál, sledujeme, jak se jim daří, a jsme tu, když potřebují poradit nebo posunout věci o krok dál.</strong></p>
                     <div class="values">
-                        <div class="value-item"><span class="value-label">9 let zkušeností</span></div>
-                        <div class="value-item"><span class="value-label">individuální přístup</span></div>
-                        <div class="value-item"><span class="value-label">dlouhodobé partnerství</span></div>
-                        <div class="value-item"><span class="value-label">dodržování termínů</span></div>
+                        <div class="value-item"><span class="value-label" data-i18n="about.value1">9 let zkušeností</span></div>
+                        <div class="value-item"><span class="value-label" data-i18n="about.value2">individuální přístup</span></div>
+                        <div class="value-item"><span class="value-label" data-i18n="about.value3">dlouhodobé partnerství</span></div>
+                        <div class="value-item"><span class="value-label" data-i18n="about.value4">dodržování termínů</span></div>
                     </div>
                 </div>
             </div>
@@ -665,10 +687,10 @@
     <!-- References Section -->
     <section id="references" class="references">
         <div class="container">
-            <h2>Reference</h2>
+            <h2 data-i18n="references.heading">Reference</h2>
             <div class="testimonials">
                 <div class="testimonial">
-                    <p>„Spolupráce s Black Mango je opravdu skvělá. Již při prvním setkání jsem věděla, že naše propojení bude přínosné. Díky jejich schopnostem a dovednostem, flexibilitě, pohotovosti a zaujetím vznikají na mých sociálních sítích příspěvky, které oslovují klienty. Současně tak vzniká prostor pro další projekty a spolupráci. Jejich tvorba mi velmi ulehčuje práci na sítích, na jejichž spravování mi nezbývá čas. Moc za to vše děkuji."</p>
+                    <p data-i18n="testimonial1">„Spolupráce s Black Mango je opravdu skvělá. Již při prvním setkání jsem věděla, že naše propojení bude přínosné. Díky jejich schopnostem a dovednostem, flexibilitě, pohotovosti a zaujetím vznikají na mých sociálních sítích příspěvky, které oslovují klienty. Současně tak vzniká prostor pro další projekty a spolupráci. Jejich tvorba mi velmi ulehčuje práci na sítích, na jejichž spravování mi nezbývá čas. Moc za to vše děkuji."</p>
                     <span class="author">– Iva Cedarská, IC Yoga Březnice</span>
                 </div>
 
@@ -678,7 +700,7 @@
                 </div>
 
                 <div class="testimonial">
-                    <p>„Spolupráce s holkama je jedna radost. Pracují rychle a flexibilně a my můžeme starosti o marketing a propagaci pustit z hlavy."</p>
+                    <p data-i18n="testimonial3">„Spolupráce s holkama je jedna radost. Pracují rychle a flexibilně a my můžeme starosti o marketing a propagaci pustit z hlavy."</p>
                     <span class="author">– Iva Cízová, Fyzio Body Profik</span>
                 </div>
             </div>
@@ -688,97 +710,97 @@
     <!-- FAQ Section -->
     <section id="faq" class="faq">
         <div class="container">
-            <h2>Máte otázky?</h2>
+            <h2 data-i18n="faq.heading">Máte otázky?</h2>
             <div class="faq-list">
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                        Musím přesně vědět, co chci?
+                        <span data-i18n="faq1.q">Musím přesně vědět, co chci?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-1"><p>Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně.</p></div>
+                    <div class="faq-answer" id="faq-answer-1"><p data-i18n="faq1.a">Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                        Pracujete jen s klienty z Příbrami, nebo i odjinud?
+                        <span data-i18n="faq2.q">Pracujete jen s klienty z Příbrami, nebo i odjinud?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-2"><p>Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online. Pokud jste z okolí Příbrami a preferujete osobní setkání, rádi se domluvíme.</p></div>
+                    <div class="faq-answer" id="faq-answer-2"><p data-i18n="faq2.a">Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online. Pokud jste z okolí Příbrami a preferujete osobní setkání, rádi se domluvíme.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                        Proč potřebuji logo nebo jednotný vizuální styl?
+                        <span data-i18n="faq3.q">Proč potřebuji logo nebo jednotný vizuální styl?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-3"><p>Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává.</p></div>
+                    <div class="faq-answer" id="faq-answer-3"><p data-i18n="faq3.a">Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-                        Postaráte se i o správu mých sociálních sítí?
+                        <span data-i18n="faq4.q">Postaráte se i o správu mých sociálních sítí?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-4"><p>Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně. Záleží na tom, co vám víc vyhovuje.</p></div>
+                    <div class="faq-answer" id="faq-answer-4"><p data-i18n="faq4.a">Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně. Záleží na tom, co vám víc vyhovuje.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
-                        Čím se lišíte od jiné agentury nebo freelancera?
+                        <span data-i18n="faq5.q">Čím se lišíte od jiné agentury nebo freelancera?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-5"><p>Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy, takže výsledek dává smysl z více stran najednou.</p></div>
+                    <div class="faq-answer" id="faq-answer-5"><p data-i18n="faq5.a">Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy, takže výsledek dává smysl z více stran najednou.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
-                        Co je to brand manuál?
+                        <span data-i18n="faq6.q">Co je to brand manuál?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-6"><p>Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně.</p></div>
+                    <div class="faq-answer" id="faq-answer-6"><p data-i18n="faq6.a">Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
-                        Potřebuji web, když mám sociální sítě?
+                        <span data-i18n="faq7.q">Potřebuji web, když mám sociální sítě?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-7"><p>Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně a zákazníci vás na něm hledají, když chtějí vědět víc. Ideální kombinace je web jako základ a sociální sítě jako cesta k němu.</p></div>
+                    <div class="faq-answer" id="faq-answer-7"><p data-i18n="faq7.a">Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně a zákazníci vás na něm hledají, když chtějí vědět víc. Ideální kombinace je web jako základ a sociální sítě jako cesta k němu.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">
-                        Jak poznám, že mi grafika nebo web skutečně pomáhají?
+                        <span data-i18n="faq8.q">Jak poznám, že mi grafika nebo web skutečně pomáhají?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-8"><p>Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí, referují vás dál a vy nemusíte každému znovu vysvětlovat, co děláte. To jsou znaky, že vizuál a obsah pracují za vás.</p></div>
+                    <div class="faq-answer" id="faq-answer-8"><p data-i18n="faq8.a">Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí, referují vás dál a vy nemusíte každému znovu vysvětlovat, co děláte. To jsou znaky, že vizuál a obsah pracují za vás.</p></div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-9">
-                        Jak dlouho trvá vytvoření webu?
+                        <span data-i18n="faq9.q">Jak dlouho trvá vytvoření webu?</span>
                         <span class="faq-chevron" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </span>
                     </button>
-                    <div class="faq-answer" id="faq-answer-9"><p>Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů. Vaši konkrétní situaci probereme na <a href="#contact">konzultaci</a>.</p></div>
+                    <div class="faq-answer" id="faq-answer-9"><p data-i18n-html="faq9.a">Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů. Vaši konkrétní situaci probereme na <a href="#contact">konzultaci</a>.</p></div>
                 </div>
 
             </div>
@@ -788,32 +810,32 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Pojďme spolupracovat</h2>
-            <p class="contact-subtitle">Máte projekt/firmu a hodily by se vám naše služby? Kontaktujte nás.</p>
-            
+            <h2 data-i18n="contact.heading">Pojďme spolupracovat</h2>
+            <p class="contact-subtitle" data-i18n="contact.subtitle">Máte projekt/firmu a hodily by se vám naše služby? Kontaktujte nás.</p>
+
             <div class="contact-content">
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <label for="contact-name" class="sr-only">Jméno a příjmení</label>
-                        <input type="text" id="contact-name" name="name" placeholder="Jméno a příjmení" required autocomplete="name">
+                        <label for="contact-name" class="sr-only" data-i18n="contact.name.label">Jméno a příjmení</label>
+                        <input type="text" id="contact-name" name="name" data-i18n-placeholder="contact.name.placeholder" placeholder="Jméno a příjmení" required autocomplete="name">
                     </div>
                     <div class="form-group">
-                        <label for="contact-email" class="sr-only">Email</label>
-                        <input type="email" id="contact-email" name="email" placeholder="Email" required autocomplete="email">
+                        <label for="contact-email" class="sr-only" data-i18n="contact.email.label">Email</label>
+                        <input type="email" id="contact-email" name="email" data-i18n-placeholder="contact.email.placeholder" placeholder="Email" required autocomplete="email">
                     </div>
                     <div class="form-group">
-                        <label for="contact-phone" class="sr-only">Telefonní číslo (nepovinné)</label>
-                        <input type="tel" id="contact-phone" name="phone" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
+                        <label for="contact-phone" class="sr-only" data-i18n="contact.phone.label">Telefonní číslo (nepovinné)</label>
+                        <input type="tel" id="contact-phone" name="phone" data-i18n-placeholder="contact.phone.placeholder" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
                     </div>
                     <div class="form-group">
-                        <label for="contact-message" class="sr-only">Popis projektu</label>
-                        <textarea id="contact-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="5" required></textarea>
+                        <label for="contact-message" class="sr-only" data-i18n="contact.message.label">Popis projektu</label>
+                        <textarea id="contact-message" name="message" data-i18n-placeholder="contact.message.placeholder" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="5" required></textarea>
                     </div>
                     <div class="form-gdpr-checkbox">
                         <input type="checkbox" id="contact-gdpr" name="gdpr" required>
-                        <label for="contact-gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
+                        <label for="contact-gdpr" data-i18n-html="contact.gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
                     </div>
-                    <button type="submit" class="cta-button">Poslat zprávu</button>
+                    <button type="submit" class="cta-button" data-i18n="contact.submit">Poslat zprávu</button>
                 </form>
 
                 <div class="contact-info">
@@ -833,11 +855,11 @@
                     </div>
 
                     <div class="contact-how">
-                        <h3 class="contact-how-title">Jak to funguje</h3>
+                        <h3 class="contact-how-title" data-i18n="contact.how.title">Jak to funguje</h3>
                         <ol class="contact-steps">
-                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span>Vyplníte formulář</span></li>
-                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span>Do 48 hodin se ozveme</span></li>
-                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span>Domluvíme si konzultaci — <em>zdarma, bez závazků</em></span></li>
+                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span data-i18n="contact.step1">Vyplníte formulář</span></li>
+                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span data-i18n="contact.step2">Do 48 hodin se ozveme</span></li>
+                            <li><img src="Black_Mango_icon.webp" alt="" class="step-mango" aria-hidden="true" decoding="async"><span data-i18n-html="contact.step3">Domluvíme si konzultaci — <em>zdarma, bez závazků</em></span></li>
                         </ol>
                     </div>
 
@@ -857,19 +879,19 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Black Mango. Design, který mluví za Vás.</p>
+            <p>&copy; 2026 Black Mango. <span data-i18n="footer.tagline">Design, který mluví za Vás.</span></p>
             <div class="footer-legal">
                 <span>Ing. Alena Vohanková, IČO: 19345534</span>
                 <span>Mgr. Šárka Měchurová, IČO: 24471178</span>
-                <a href="gdpr.html">Ochrana osobních údajů</a>
+                <a href="gdpr.html" data-i18n="footer.gdpr">Ochrana osobních údajů</a>
             </div>
         </div>
     </footer>
 
     <div class="pdf-preview-modal" id="pdfPreviewModal" aria-hidden="true">
         <div class="pdf-preview-backdrop" data-close-pdf="true"></div>
-        <div class="pdf-preview-dialog" role="dialog" aria-modal="true" aria-label="Náhled PDF dokumentu">
-            <button type="button" class="pdf-preview-close" id="pdfPreviewClose" aria-label="Zavřít náhled">&#10005;</button>
+        <div class="pdf-preview-dialog" role="dialog" aria-modal="true" data-i18n-aria="pdf.modal.aria" aria-label="Náhled PDF dokumentu">
+            <button type="button" class="pdf-preview-close" id="pdfPreviewClose" data-i18n-aria="pdf.close.aria" aria-label="Zavřít náhled">&#10005;</button>
             <iframe id="pdfPreviewFrame" title="Náhled PDF" loading="lazy"></iframe>
         </div>
     </div>
@@ -880,11 +902,11 @@
         <div class="exit-popup-card">
             <button class="exit-popup-close" id="exitPopupClose" aria-label="Zavřít">&#x2715;</button>
             <img class="exit-popup-icon" src="Black_Mango_icon.webp" alt="Black Mango" width="72" height="72" decoding="async">
-            <p class="exit-popup-label">Počkejte!</p>
-            <h2 class="exit-popup-title">Úvodní konzultace<br>je zcela zdarma.</h2>
-            <p class="exit-popup-text">Probereme váš projekt, odpovíme na všechny dotazy a navrhneme nejlepší řešení.</p>
-            <a class="exit-popup-btn" href="#contact" id="exitPopupCta">Rezervovat konzultaci</a>
-            <button class="exit-popup-dismiss" id="exitPopupDismiss">Ne, děkuji</button>
+            <p class="exit-popup-label" data-i18n="exit.label">Počkejte!</p>
+            <h2 class="exit-popup-title" data-i18n-html="exit.title">Úvodní konzultace<br>je zcela zdarma.</h2>
+            <p class="exit-popup-text" data-i18n="exit.text">Probereme váš projekt, odpovíme na všechny dotazy a navrhneme nejlepší řešení.</p>
+            <a class="exit-popup-btn" href="#contact" id="exitPopupCta" data-i18n="exit.cta">Rezervovat konzultaci</a>
+            <button class="exit-popup-dismiss" id="exitPopupDismiss" data-i18n="exit.dismiss">Ne, děkuji</button>
         </div>
     </div>
 
@@ -893,36 +915,36 @@
         <div class="chat-panel" id="chatPanel" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Kontaktní formulář">
             <div class="chat-panel-header">
                 <img src="Black_Mango_icon.webp" alt="Black Mango" width="32" height="32" decoding="async">
-                <span>Napište nám</span>
+                <span data-i18n="chat.title">Napište nám</span>
                 <button class="chat-panel-close" id="chatPanelClose" aria-label="Zavřít">&#x2715;</button>
             </div>
             <div class="chat-panel-body">
                 <form class="chat-form" id="chatForm">
                     <div class="form-group">
-                        <label for="chat-name" class="sr-only">Jméno a příjmení</label>
-                        <input type="text" id="chat-name" name="name" placeholder="Jméno a příjmení" required autocomplete="name">
+                        <label for="chat-name" class="sr-only" data-i18n="contact.name.label">Jméno a příjmení</label>
+                        <input type="text" id="chat-name" name="name" data-i18n-placeholder="contact.name.placeholder" placeholder="Jméno a příjmení" required autocomplete="name">
                     </div>
                     <div class="form-group">
-                        <label for="chat-email" class="sr-only">Email</label>
-                        <input type="email" id="chat-email" name="email" placeholder="Email" required autocomplete="email">
+                        <label for="chat-email" class="sr-only" data-i18n="contact.email.label">Email</label>
+                        <input type="email" id="chat-email" name="email" data-i18n-placeholder="contact.email.placeholder" placeholder="Email" required autocomplete="email">
                     </div>
                     <div class="form-group">
-                        <label for="chat-phone" class="sr-only">Telefonní číslo (nepovinné)</label>
-                        <input type="tel" id="chat-phone" name="phone" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
+                        <label for="chat-phone" class="sr-only" data-i18n="contact.phone.label">Telefonní číslo (nepovinné)</label>
+                        <input type="tel" id="chat-phone" name="phone" data-i18n-placeholder="contact.phone.placeholder" placeholder="Telefonní číslo (nepovinné)" autocomplete="tel">
                     </div>
                     <div class="form-group">
-                        <label for="chat-message" class="sr-only">Popis projektu</label>
-                        <textarea id="chat-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="4" required></textarea>
+                        <label for="chat-message" class="sr-only" data-i18n="contact.message.label">Popis projektu</label>
+                        <textarea id="chat-message" name="message" data-i18n-placeholder="contact.message.placeholder" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="4" required></textarea>
                     </div>
                     <div class="form-gdpr-checkbox">
                         <input type="checkbox" id="chat-gdpr" name="gdpr" required>
-                        <label for="chat-gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
+                        <label for="chat-gdpr" data-i18n-html="contact.gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
                     </div>
-                    <button type="submit" class="chat-form-submit">Odeslat zprávu</button>
+                    <button type="submit" class="chat-form-submit" data-i18n="chat.submit">Odeslat zprávu</button>
                 </form>
             </div>
         </div>
-        <button class="chat-fab" id="chatFab" aria-label="Otevřít kontaktní formulář" aria-expanded="false">
+        <button class="chat-fab" id="chatFab" data-i18n-aria="chat.fab.aria" aria-label="Otevřít kontaktní formulář" aria-expanded="false">
             <svg class="chat-fab-icon chat-fab-icon--open" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>

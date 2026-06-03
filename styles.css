@@ -2312,3 +2312,58 @@ button.portfolio-grafika-card--lightbox {
 .chat-panel .form-gdpr-checkbox label a {
     color: var(--color-dark);
 }
+
+/* ===========================
+   LANGUAGE SWITCHER
+   =========================== */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 1.5rem;
+    flex-shrink: 0;
+}
+
+.lang-sep {
+    color: var(--color-beige);
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-family: 'NunitoSans', 'Nunito Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: rgba(12, 35, 32, 0.45);
+    cursor: pointer;
+    padding: 0.3rem 0.45rem;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+    line-height: 1;
+}
+
+.lang-btn:hover {
+    color: var(--color-dark);
+    background: rgba(191, 162, 122, 0.15);
+}
+
+.lang-btn--active {
+    color: var(--color-dark);
+    background: rgba(191, 162, 122, 0.2);
+}
+
+@media (max-width: 768px) {
+    .lang-switcher {
+        order: 2;
+        margin-left: auto;
+        margin-right: 0.25rem;
+    }
+
+    .nav-hamburger {
+        order: 3;
+        margin-left: 0.25rem;
+    }
+}
