@@ -8,6 +8,20 @@
 const translations = BM_TRANSLATIONS;
 
 /* ===========================
+   CONFIG
+   =========================== */
+const CONFIG = {
+    NAVBAR_SHADOW_THRESHOLD: 100,
+    SCROLL_REVEAL_OFFSET_PX: 20,
+    SCROLL_REVEAL_DURATION: '0.6s',
+    CAROUSEL_NUDGE_RESUME_MS: 1400,
+    EXIT_POPUP_READY_DELAY_MS: 4000,
+    CAROUSEL_SPEED_PARTNERS: 34,
+    CAROUSEL_SPEED_WEB: 26,
+    CAROUSEL_SPEED_GRAFIKA: 26,
+};
+
+/* ===========================
    LANGUAGE SWITCHER
    =========================== */
 (function () {
@@ -155,7 +169,7 @@ const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', function() {
     let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (currentScroll > 100) {
+    if (currentScroll > CONFIG.NAVBAR_SHADOW_THRESHOLD) {
         navbar.style.boxShadow = '0 2px 8px rgba(12, 35, 32, 0.1)';
     } else {
         navbar.style.boxShadow = 'none';
@@ -203,8 +217,8 @@ const revealOnScroll = () => {
 
 revealElements.forEach(element => {
     element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    element.style.transform = `translateY(${CONFIG.SCROLL_REVEAL_OFFSET_PX}px)`;
+    element.style.transition = `opacity ${CONFIG.SCROLL_REVEAL_DURATION} ease, transform ${CONFIG.SCROLL_REVEAL_DURATION} ease`;
 });
 
 window.addEventListener('scroll', revealOnScroll);
@@ -229,13 +243,38 @@ window.addEventListener('scroll', () => {
     });
 
     document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = '#D6C3A3';
-        } else {
-            link.style.color = '#0C2320';
-        }
+        link.classList.toggle('is-active', link.getAttribute('href').slice(1) === current);
     });
+});
+
+/* ===========================
+   MODAL HELPERS
+   =========================== */
+const registeredModals = [];
+
+function openModal(el, focusTarget) {
+    el.classList.add('is-open');
+    el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const target = focusTarget || el.querySelector('button, [tabindex]');
+    if (target) target.focus();
+    if (!registeredModals.includes(el)) registeredModals.push(el);
+}
+
+function closeModal(el) {
+    el.classList.remove('is-open');
+    el.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = registeredModals.find(m => m.classList.contains('is-open'));
+    if (open) {
+        const closeFn = open._closeModal;
+        if (closeFn) closeFn();
+        else closeModal(open);
+    }
 });
 
 /* ===========================
@@ -252,20 +291,18 @@ function buildPdfPreviewUrl(path) {
 function openPdfPreview(path) {
     if (!pdfModal || !pdfFrame) return;
     pdfFrame.src = buildPdfPreviewUrl(path);
-    pdfModal.classList.add('is-open');
-    pdfModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    openModal(pdfModal, pdfClose);
 }
 
 function closePdfPreview() {
     if (!pdfModal || !pdfFrame) return;
-    pdfModal.classList.remove('is-open');
-    pdfModal.setAttribute('aria-hidden', 'true');
     pdfFrame.src = 'about:blank';
-    document.body.style.overflow = '';
+    closeModal(pdfModal);
 }
 
 if (pdfModal && pdfFrame) {
+    pdfModal._closeModal = closePdfPreview;
+
     document.querySelectorAll('.portfolio-slide[data-pdf]').forEach(slide => {
         slide.addEventListener('click', () => openPdfPreview(slide.dataset.pdf));
     });
@@ -276,12 +313,6 @@ if (pdfModal && pdfFrame) {
 
     pdfModal.querySelectorAll('[data-close-pdf="true"]').forEach(node => {
         node.addEventListener('click', closePdfPreview);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && pdfModal.classList.contains('is-open')) {
-            closePdfPreview();
-        }
     });
 
     pdfModal.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -333,14 +364,16 @@ document.querySelectorAll('.portfolio-carousel').forEach(carousel => {
 });
 
 /* ===========================
-   PARTNERS MARQUEE (SEAMLESS LOOP)
+   SEAMLESS-LOOP CAROUSEL FACTORY
    =========================== */
-function initPartnersMarquee() {
+function initCarousel({ wrapSelector, trackSelector, groupSelector, prevSelector, nextSelector, cardSelector, speed }) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    document.querySelectorAll('.partners-marquee').forEach(marquee => {
-        const track = marquee.querySelector('.partners-marquee-track');
-        const groups = track ? track.querySelectorAll('.partners-marquee-group') : [];
+    document.querySelectorAll(wrapSelector).forEach(carousel => {
+        const track = carousel.querySelector(trackSelector);
+        const groups = track ? track.querySelectorAll(groupSelector) : [];
+        const prevButton = prevSelector ? carousel.querySelector(prevSelector) : null;
+        const nextButton = nextSelector ? carousel.querySelector(nextSelector) : null;
 
         if (!track || groups.length < 2) return;
 
@@ -349,219 +382,6 @@ function initPartnersMarquee() {
         let lastTimestamp = 0;
         let rafId = null;
         let isPaused = false;
-        const speedPxPerSecond = 34;
-
-        const applyTransform = () => {
-            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
-        };
-
-        const recalc = () => {
-            const nextDistance = groups[0].getBoundingClientRect().width;
-            if (nextDistance > 0) {
-                loopDistance = nextDistance;
-            }
-            if (loopDistance > 0) {
-                offset = offset % loopDistance;
-            }
-            applyTransform();
-        };
-
-        const step = (timestamp) => {
-            if (!lastTimestamp) {
-                lastTimestamp = timestamp;
-            }
-
-            const delta = (timestamp - lastTimestamp) / 1000;
-            lastTimestamp = timestamp;
-
-            if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
-                offset += speedPxPerSecond * delta;
-                if (offset >= loopDistance) {
-                    offset -= loopDistance;
-                }
-                applyTransform();
-            }
-
-            rafId = window.requestAnimationFrame(step);
-        };
-
-        const pause = () => { isPaused = true; };
-        const resume = () => { isPaused = false; };
-
-        marquee.addEventListener('mouseenter', pause);
-        marquee.addEventListener('mouseleave', resume);
-        marquee.addEventListener('focusin', pause);
-        marquee.addEventListener('focusout', resume);
-
-        window.addEventListener('resize', recalc);
-
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(recalc);
-        }
-
-        if (reducedMotion.addEventListener) {
-            reducedMotion.addEventListener('change', () => {
-                if (reducedMotion.matches) {
-                    offset = 0;
-                    applyTransform();
-                }
-                lastTimestamp = 0;
-            });
-        }
-
-        recalc();
-
-        if (!rafId) {
-            rafId = window.requestAnimationFrame(step);
-        }
-    });
-}
-
-initPartnersMarquee();
-
-/* ===========================
-   PORTFOLIO WEB CAROUSEL (SEAMLESS LOOP)
-   =========================== */
-function initPortfolioWebCarousel() {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    document.querySelectorAll('.portfolio-web-carousel').forEach(carousel => {
-        const track = carousel.querySelector('.portfolio-web-carousel-track');
-        const groups = track ? track.querySelectorAll('.portfolio-web-carousel-group') : [];
-        const prevButton = carousel.querySelector('.portfolio-web-carousel-btn-prev');
-        const nextButton = carousel.querySelector('.portfolio-web-carousel-btn-next');
-
-        if (!track || groups.length < 2) return;
-
-        let loopDistance = 0;
-        let offset = 0;
-        let lastTimestamp = 0;
-        let rafId = null;
-        let isPaused = false;
-        const speedPxPerSecond = 26;
-
-        const applyTransform = () => {
-            track.style.transform = `translate3d(${-offset}px, 0, 0)`;
-        };
-
-        const recalc = () => {
-            const nextDistance = groups[0].getBoundingClientRect().width;
-            if (nextDistance > 0) {
-                loopDistance = nextDistance;
-            }
-            if (loopDistance > 0) {
-                offset = offset % loopDistance;
-            }
-            applyTransform();
-        };
-
-        const getStepDistance = () => {
-            const firstCard = groups[0].querySelector('.portfolio-web-card');
-            if (!firstCard) return 0;
-
-            const cardWidth = firstCard.getBoundingClientRect().width;
-            const groupStyles = window.getComputedStyle(groups[0]);
-            const gap = parseFloat(groupStyles.columnGap || groupStyles.gap || '0') || 0;
-
-            return cardWidth + gap;
-        };
-
-        const nudge = (direction) => {
-            const stepDistance = getStepDistance();
-            if (!stepDistance || !loopDistance) return;
-
-            isPaused = true;
-            offset += direction * stepDistance;
-            offset = ((offset % loopDistance) + loopDistance) % loopDistance;
-            applyTransform();
-
-            window.clearTimeout(carousel._resumeTimeout);
-            carousel._resumeTimeout = window.setTimeout(() => {
-                isPaused = false;
-            }, 1400);
-        };
-
-        const step = (timestamp) => {
-            if (!lastTimestamp) {
-                lastTimestamp = timestamp;
-            }
-
-            const delta = (timestamp - lastTimestamp) / 1000;
-            lastTimestamp = timestamp;
-
-            if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
-                offset += speedPxPerSecond * delta;
-                if (offset >= loopDistance) {
-                    offset -= loopDistance;
-                }
-                applyTransform();
-            }
-
-            rafId = window.requestAnimationFrame(step);
-        };
-
-        const pause = () => { isPaused = true; };
-        const resume = () => { isPaused = false; };
-
-        carousel.addEventListener('mouseenter', pause);
-        carousel.addEventListener('mouseleave', resume);
-        carousel.addEventListener('focusin', pause);
-        carousel.addEventListener('focusout', resume);
-
-        if (prevButton) {
-            prevButton.addEventListener('click', () => nudge(-1));
-        }
-
-        if (nextButton) {
-            nextButton.addEventListener('click', () => nudge(1));
-        }
-
-        window.addEventListener('resize', recalc);
-
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(recalc);
-        }
-
-        if (reducedMotion.addEventListener) {
-            reducedMotion.addEventListener('change', () => {
-                if (reducedMotion.matches) {
-                    offset = 0;
-                    applyTransform();
-                }
-                lastTimestamp = 0;
-            });
-        }
-
-        recalc();
-
-        if (!rafId) {
-            rafId = window.requestAnimationFrame(step);
-        }
-    });
-}
-
-initPortfolioWebCarousel();
-
-/* ===========================
-   PORTFOLIO GRAFIKA CAROUSEL (SEAMLESS LOOP)
-   =========================== */
-function initPortfolioGrafikaCarousel() {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    document.querySelectorAll('.portfolio-grafika-carousel').forEach(carousel => {
-        const track = carousel.querySelector('.portfolio-grafika-carousel-track');
-        const groups = track ? track.querySelectorAll('.portfolio-grafika-carousel-group') : [];
-        const prevButton = carousel.querySelector('.portfolio-web-carousel-btn-prev');
-        const nextButton = carousel.querySelector('.portfolio-web-carousel-btn-next');
-
-        if (!track || groups.length < 2) return;
-
-        let loopDistance = 0;
-        let offset = 0;
-        let lastTimestamp = 0;
-        let rafId = null;
-        let isPaused = false;
-        const speedPxPerSecond = 26;
 
         const applyTransform = () => {
             track.style.transform = `translate3d(${-offset}px, 0, 0)`;
@@ -574,54 +394,166 @@ function initPortfolioGrafikaCarousel() {
             applyTransform();
         };
 
-        const getStepDistance = () => {
-            const firstCard = groups[0].querySelector('.portfolio-grafika-card');
-            if (!firstCard) return 0;
-            const cardWidth = firstCard.getBoundingClientRect().width;
-            const gap = parseFloat(window.getComputedStyle(groups[0]).columnGap || '0') || 0;
-            return cardWidth + gap;
-        };
-
-        const nudge = (direction) => {
-            const stepDistance = getStepDistance();
-            if (!stepDistance || !loopDistance) return;
-            isPaused = true;
-            offset += direction * stepDistance;
-            offset = ((offset % loopDistance) + loopDistance) % loopDistance;
-            applyTransform();
-            window.clearTimeout(carousel._resumeTimeout);
-            carousel._resumeTimeout = window.setTimeout(() => { isPaused = false; }, 1400);
-        };
-
         const step = (timestamp) => {
             if (!lastTimestamp) lastTimestamp = timestamp;
             const delta = (timestamp - lastTimestamp) / 1000;
             lastTimestamp = timestamp;
             if (!isPaused && !reducedMotion.matches && loopDistance > 0) {
-                offset += speedPxPerSecond * delta;
+                offset += speed * delta;
                 if (offset >= loopDistance) offset -= loopDistance;
                 applyTransform();
             }
             rafId = window.requestAnimationFrame(step);
         };
 
-        carousel.addEventListener('mouseenter', () => { isPaused = true; });
-        carousel.addEventListener('mouseleave', () => { isPaused = false; });
-        carousel.addEventListener('focusin', () => { isPaused = true; });
-        carousel.addEventListener('focusout', () => { isPaused = false; });
+        const pause = () => { isPaused = true; };
+        const resume = () => { isPaused = false; };
 
-        if (prevButton) prevButton.addEventListener('click', () => nudge(-1));
-        if (nextButton) nextButton.addEventListener('click', () => nudge(1));
+        carousel.addEventListener('mouseenter', pause);
+        carousel.addEventListener('mouseleave', resume);
+        carousel.addEventListener('focusin', pause);
+        carousel.addEventListener('focusout', resume);
+
+        if (cardSelector && (prevButton || nextButton)) {
+            const getStepDistance = () => {
+                const firstCard = groups[0].querySelector(cardSelector);
+                if (!firstCard) return 0;
+                const cardWidth = firstCard.getBoundingClientRect().width;
+                const styles = window.getComputedStyle(groups[0]);
+                const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+                return cardWidth + gap;
+            };
+
+            // Animate a swipe to an absolute target offset, then settle and resume auto-scroll.
+            // If the move would cross the loop seam, jump instantly to the (visually identical)
+            // wrapped spot to avoid a long backward slide or blank gap at the ends.
+            const settleTo = (target, duration) => {
+                const wrapped = ((target % loopDistance) + loopDistance) % loopDistance;
+                const willWrap = Math.abs(wrapped - target) > 0.5;
+                offset = wrapped;
+                track.style.transition = willWrap ? '' : `transform ${duration}ms ease`;
+                applyTransform();
+                window.clearTimeout(carousel._snapTimeout);
+                if (!willWrap) {
+                    carousel._snapTimeout = window.setTimeout(() => { track.style.transition = ''; }, duration + 20);
+                }
+                window.clearTimeout(carousel._resumeTimeout);
+                carousel._resumeTimeout = window.setTimeout(() => { isPaused = false; }, CONFIG.CAROUSEL_NUDGE_RESUME_MS);
+            };
+
+            const nudge = (direction) => {
+                const stepDistance = getStepDistance();
+                if (!stepDistance || !loopDistance) return;
+                isPaused = true;
+                // Snap to a whole-card boundary so each tap brings one full picture into view,
+                // instead of nudging a fixed amount from the current mid-scroll position.
+                const currentStep = Math.round(offset / stepDistance);
+                settleTo((currentStep + direction) * stepDistance, 400);
+            };
+
+            if (prevButton) prevButton.addEventListener('click', () => nudge(-1));
+            if (nextButton) nextButton.addEventListener('click', () => nudge(1));
+
+            // Touch swipe — let users drag the carousel directly instead of only tapping arrows.
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let dragStartOffset = 0;
+            let dragging = false;
+            let horizontalSwipe = false;
+
+            track.addEventListener('touchstart', (e) => {
+                if (e.touches.length !== 1 || !loopDistance) return;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                dragStartOffset = offset;
+                dragging = true;
+                horizontalSwipe = false;
+                isPaused = true;
+                window.clearTimeout(carousel._snapTimeout);
+                window.clearTimeout(carousel._resumeTimeout);
+                track.style.transition = '';
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!dragging) return;
+                const deltaX = e.touches[0].clientX - touchStartX;
+                const deltaY = e.touches[0].clientY - touchStartY;
+                if (!horizontalSwipe) {
+                    // Decide once whether this gesture is a horizontal swipe or a vertical page scroll.
+                    if (Math.abs(deltaX) < 8 && Math.abs(deltaY) < 8) return;
+                    if (Math.abs(deltaX) <= Math.abs(deltaY)) {
+                        dragging = false;
+                        isPaused = false; // vertical scroll — let the carousel keep auto-scrolling
+                        return;
+                    }
+                    horizontalSwipe = true;
+                }
+                e.preventDefault(); // claim the horizontal gesture from page scrolling
+                // Follow the finger; wrap live so the drag is seamless across the loop.
+                offset = ((dragStartOffset - deltaX) % loopDistance + loopDistance) % loopDistance;
+                applyTransform();
+            }, { passive: false });
+
+            const endSwipe = () => {
+                if (!dragging) return;
+                dragging = false;
+                if (horizontalSwipe) {
+                    // Snap to the nearest whole card so the swipe lands on a full picture.
+                    const stepDistance = getStepDistance();
+                    if (stepDistance) {
+                        settleTo(Math.round(offset / stepDistance) * stepDistance, 300);
+                        return;
+                    }
+                }
+                window.clearTimeout(carousel._resumeTimeout);
+                carousel._resumeTimeout = window.setTimeout(() => { isPaused = false; }, CONFIG.CAROUSEL_NUDGE_RESUME_MS);
+            };
+
+            track.addEventListener('touchend', endSwipe);
+            track.addEventListener('touchcancel', endSwipe);
+        }
 
         window.addEventListener('resize', recalc);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(recalc);
+
+        if (reducedMotion.addEventListener) {
+            reducedMotion.addEventListener('change', () => {
+                if (reducedMotion.matches) { offset = 0; applyTransform(); }
+                lastTimestamp = 0;
+            });
+        }
 
         recalc();
         if (!rafId) rafId = window.requestAnimationFrame(step);
     });
 }
 
-initPortfolioGrafikaCarousel();
+initCarousel({
+    wrapSelector: '.partners-marquee',
+    trackSelector: '.partners-marquee-track',
+    groupSelector: '.partners-marquee-group',
+    speed: CONFIG.CAROUSEL_SPEED_PARTNERS,
+});
+
+initCarousel({
+    wrapSelector: '.portfolio-web-carousel',
+    trackSelector: '.portfolio-web-carousel-track',
+    groupSelector: '.portfolio-web-carousel-group',
+    prevSelector: '.portfolio-web-carousel-btn-prev',
+    nextSelector: '.portfolio-web-carousel-btn-next',
+    cardSelector: '.portfolio-web-card',
+    speed: CONFIG.CAROUSEL_SPEED_WEB,
+});
+
+initCarousel({
+    wrapSelector: '.portfolio-grafika-carousel',
+    trackSelector: '.portfolio-grafika-carousel-track',
+    groupSelector: '.portfolio-grafika-carousel-group',
+    prevSelector: '.portfolio-web-carousel-btn-prev',
+    nextSelector: '.portfolio-web-carousel-btn-next',
+    cardSelector: '.portfolio-grafika-card',
+    speed: CONFIG.CAROUSEL_SPEED_GRAFIKA,
+});
 
 /* ===========================
    TISKOVINY LIGHTBOX
@@ -636,19 +568,16 @@ initPortfolioGrafikaCarousel();
     function openLightbox(src, alt) {
         img.src = src;
         img.alt = alt || '';
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeBtn && closeBtn.focus();
+        openModal(modal, closeBtn || undefined);
     }
 
     function closeLightbox() {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
         img.src = '';
         img.alt = '';
-        document.body.style.overflow = '';
+        closeModal(modal);
     }
+
+    modal._closeModal = closeLightbox;
 
     document.querySelectorAll('[data-lightbox-src]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -660,10 +589,6 @@ initPortfolioGrafikaCarousel();
 
     modal.querySelectorAll('[data-close-lightbox="true"]').forEach(el => {
         el.addEventListener('click', closeLightbox);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeLightbox();
     });
 }());
 
@@ -730,22 +655,19 @@ initPortfolioGrafikaCarousel();
 
     if (sessionStorage.getItem(SESSION_KEY)) return;
 
-    window.setTimeout(() => { readyToShow = true; }, 4000);
+    window.setTimeout(() => { readyToShow = true; }, CONFIG.EXIT_POPUP_READY_DELAY_MS);
 
     function openPopup() {
         if (!readyToShow || sessionStorage.getItem(SESSION_KEY)) return;
         sessionStorage.setItem(SESSION_KEY, '1');
-        popup.classList.add('is-open');
-        popup.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeBtn && closeBtn.focus();
+        openModal(popup, closeBtn || undefined);
     }
 
     function closePopup() {
-        popup.classList.remove('is-open');
-        popup.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
+        closeModal(popup);
     }
+
+    popup._closeModal = closePopup;
 
     document.addEventListener('mouseleave', (e) => {
         if (e.clientY <= 0) openPopup();
@@ -763,10 +685,6 @@ initPortfolioGrafikaCarousel();
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
-    });
 }());
 
 /* ===========================

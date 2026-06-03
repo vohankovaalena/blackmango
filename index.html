@@ -114,6 +114,31 @@
     </script>
 </head>
 <body>
+    <!-- SVG sprite: reusable symbols & shared defs. Add new icons/gradients here. -->
+    <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="peel-gradient" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#a08048"/>
+                <stop offset="100%" stop-color="#e8ddd0"/>
+            </linearGradient>
+        </defs>
+        <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+        </symbol>
+        <!-- Tapping-hand gesture: pointing hand with emphasis lines -->
+        <symbol id="icon-tap" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="10" y1="1" x2="10" y2="4"/>
+            <line x1="4.4" y1="3.1" x2="6.7" y2="5.4"/>
+            <line x1="15.6" y1="3.1" x2="13.3" y2="5.4"/>
+            <g transform="translate(2,6)">
+                <path d="M10 9.5V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v10"/>
+                <path d="M14 10V9a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1"/>
+                <path d="M18 11v-1a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+                <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+            </g>
+        </symbol>
+    </svg>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -122,7 +147,7 @@
                     <img src="assets/global/logo-main.webp" alt="Black Mango Creative Studio" class="nav-logo">
                 </a>
             </div>
-            <button class="nav-hamburger" id="navHamburger" data-i18n-aria="nav.hamburger.aria" aria-label="Otevřít menu" aria-expanded="false">
+            <button class="nav-hamburger" id="navHamburger" data-i18n-aria="nav.hamburger.aria" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
@@ -275,7 +300,7 @@
             <div class="services-grid">
 
                 <!-- Card 1 -->
-                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card1.aria" aria-label="Design a digitální prostředí">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card1.heading" aria-label="Design a digitální prostředí">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -284,17 +309,11 @@
                             <h3 data-i18n="card1.heading">Design a digitální prostředí</h3>
                             <p class="flip-question" data-i18n="card1.question">Jak mít web a materiály, které budou působit profesionálně a přehledně?</p>
                             <div class="peel-corner">
-                                <svg viewBox="0 0 60 60" width="60" height="60">
-                                    <defs>
-                                        <linearGradient id="peel1" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-                                            <stop offset="0%" stop-color="#a08048"/>
-                                            <stop offset="100%" stop-color="#e8ddd0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel1)"/>
+                                <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel-gradient)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
+                                <span class="peel-label"><svg viewBox="0 0 28 28" aria-hidden="true"><use href="#icon-tap"></use></svg></span>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -310,7 +329,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card2.aria" aria-label="Marketing & strategie">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card2.heading" aria-label="Marketing & strategie">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -319,17 +338,11 @@
                             <h3 data-i18n="card2.heading">Marketing &amp; strategie</h3>
                             <p class="flip-question" data-i18n="card2.question">Jak efektivně získávat nové zákazníky online?</p>
                             <div class="peel-corner">
-                                <svg viewBox="0 0 60 60" width="60" height="60">
-                                    <defs>
-                                        <linearGradient id="peel2" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-                                            <stop offset="0%" stop-color="#a08048"/>
-                                            <stop offset="100%" stop-color="#e8ddd0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel2)"/>
+                                <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel-gradient)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
+                                <span class="peel-label"><svg viewBox="0 0 28 28" aria-hidden="true"><use href="#icon-tap"></use></svg></span>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -344,7 +357,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card3.aria" aria-label="Konzultace, mentoring & vzdělávání">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card3.heading" aria-label="Konzultace, mentoring & vzdělávání">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -353,17 +366,11 @@
                             <h3 data-i18n="card3.heading">Konzultace, mentoring &amp; vzdělávání</h3>
                             <p class="flip-question" data-i18n="card3.question">Chcete mít svůj marketing pod kontrolou? Naučíme Vás přesně to, co potřebujete.</p>
                             <div class="peel-corner">
-                                <svg viewBox="0 0 60 60" width="60" height="60">
-                                    <defs>
-                                        <linearGradient id="peel3" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-                                            <stop offset="0%" stop-color="#a08048"/>
-                                            <stop offset="100%" stop-color="#e8ddd0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel3)"/>
+                                <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel-gradient)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
+                                <span class="peel-label"><svg viewBox="0 0 28 28" aria-hidden="true"><use href="#icon-tap"></use></svg></span>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -377,7 +384,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card4.aria" aria-label="Značka & identita">
+                <div class="flip-card" tabindex="0" role="button" data-i18n-aria="card4.heading" aria-label="Značka & identita">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="service-icon">
@@ -386,17 +393,11 @@
                             <h3 data-i18n="card4.heading">Značka &amp; identita</h3>
                             <p class="flip-question" data-i18n="card4.question">Jak vybudovat značku, která je snadno rozpoznatelná a důvěryhodná?</p>
                             <div class="peel-corner">
-                                <svg viewBox="0 0 60 60" width="60" height="60">
-                                    <defs>
-                                        <linearGradient id="peel4" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-                                            <stop offset="0%" stop-color="#a08048"/>
-                                            <stop offset="100%" stop-color="#e8ddd0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel4)"/>
+                                <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+                                    <path d="M 0,60 L 44,60 A 16,16 0 0,1 60,44 L 60,0 Z" fill="url(#peel-gradient)"/>
                                     <line x1="0" y1="60" x2="60" y2="0" stroke="rgba(100,65,20,0.45)" stroke-width="1.5"/>
                                 </svg>
-                                <span class="peel-label" data-i18n-html="peel.label">klikněte<br>na kartu</span>
+                                <span class="peel-label"><svg viewBox="0 0 28 28" aria-hidden="true"><use href="#icon-tap"></use></svg></span>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -702,7 +703,7 @@
                 </div>
 
                 <div class="testimonial">
-                    <p>"I just wanted to say a massive thank you for all your help with GAAD. It's always such a joy to work with you. The day went well with everything looking great! I know all the team were really grateful that everything was done so quickly with great attention to detail!"</p>
+                    <p data-i18n="testimonial2">"I just wanted to say a massive thank you for all your help with GAAD. It's always such a joy to work with you. The day went well with everything looking great! I know all the team were really grateful that everything was done so quickly with great attention to detail!"</p>
                     <span class="author">– Karen Marshall, Event Producer, Senior Journalist, BBC</span>
                 </div>
 
@@ -724,7 +725,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                         <span data-i18n="faq1.q">Musím přesně vědět, co chci?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-1"><p data-i18n="faq1.a">Nemusíte. Stačí nám říct, čím se zabýváte a co chcete dosáhnout. Zbytek vyřešíme společně.</p></div>
@@ -734,7 +735,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                         <span data-i18n="faq2.q">Pracujete jen s klienty z Příbrami, nebo i odjinud?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-2"><p data-i18n="faq2.a">Jsme z Příbramska, ale vzdálenost pro nás není překážka. Spolupracujeme s klienty v České republice i v zahraničí a vše zvládneme online. Pokud jste z okolí Příbrami a preferujete osobní setkání, rádi se domluvíme.</p></div>
@@ -744,7 +745,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                         <span data-i18n="faq3.q">Proč potřebuji logo nebo jednotný vizuální styl?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-3"><p data-i18n="faq3.a">Protože lidé posuzují firmu očima dřív, než si přečtou jediné slovo. Konzistentní a profesionální vzhled buduje důvěru a důvěra prodává.</p></div>
@@ -754,7 +755,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
                         <span data-i18n="faq4.q">Postaráte se i o správu mých sociálních sítí?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-4"><p data-i18n="faq4.a">Ano. Můžeme se postarat o tvorbu obsahu, grafiku i pravidelné příspěvky nebo vás naučit, jak to zvládnout samostatně. Záleží na tom, co vám víc vyhovuje.</p></div>
@@ -764,7 +765,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
                         <span data-i18n="faq5.q">Čím se lišíte od jiné agentury nebo freelancera?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-5"><p data-i18n="faq5.a">Nejsme velká agentura ani sólový freelancer. Ke každému projektu přistupujeme individuálně, spojujeme různé zkušenosti a pohledy, takže výsledek dává smysl z více stran najednou.</p></div>
@@ -774,7 +775,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
                         <span data-i18n="faq6.q">Co je to brand manuál?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-6"><p data-i18n="faq6.a">Průvodce tím, jak vaše značka vypadá a komunikuje. Barvy, písmo, logo, tón textu. Základ pro každého, kdo chce působit konzistentně a profesionálně.</p></div>
@@ -784,7 +785,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
                         <span data-i18n="faq7.q">Potřebuji web, když mám sociální sítě?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-7"><p data-i18n="faq7.a">Sociální sítě jsou skvělý nástroj, ale web je váš vlastní prostor na internetu, který nikdo nemůže zavřít ani změnit pravidla. Funguje pro vás 24 hodin denně a zákazníci vás na něm hledají, když chtějí vědět víc. Ideální kombinace je web jako základ a sociální sítě jako cesta k němu.</p></div>
@@ -794,7 +795,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-8">
                         <span data-i18n="faq8.q">Jak poznám, že mi grafika nebo web skutečně pomáhají?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-8"><p data-i18n="faq8.a">Dobře odvedená práce se projeví tím, že vás lidé začnou vnímat jako profesionály ještě před prvním kontaktem. Zákazníci se vracejí, referují vás dál a vy nemusíte každému znovu vysvětlovat, co děláte. To jsou znaky, že vizuál a obsah pracují za vás.</p></div>
@@ -804,7 +805,7 @@
                     <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-9">
                         <span data-i18n="faq9.q">Jak dlouho trvá vytvoření webu?</span>
                         <span class="faq-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            <svg width="20" height="20" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                         </span>
                     </button>
                     <div class="faq-answer" id="faq-answer-9"><p data-i18n-html="faq9.a">Jednoduchý firemní web vytvoříme do dvou týdnů. Rozsáhlejší weby trvají 3–6 týdnů. Vaši konkrétní situaci probereme na <a href="#contact">konzultaci</a>.</p></div>

@@ -81,7 +81,17 @@ Brand colors are CSS variables in `:root` (see [styles.css:68-74](styles.css#L68
 Typography: `BlackMango` (custom display font from `assets/fonts/black-mango/`) for headings; `NunitoSans` (local variable font from `assets/fonts/nunito-sans/`) for body text.
 
 ### JS patterns
-All JS is vanilla, no frameworks. Each feature is an IIFE or standalone function block with a section comment header. Seamless carousel loops work by duplicating the track group (`aria-hidden="true"` on the copy) and using `requestAnimationFrame` to increment an offset — `recalc()` measures the first group's `getBoundingClientRect().width` as `loopDistance`. Respects `prefers-reduced-motion`.
+All JS is vanilla, no frameworks. Each feature is an IIFE or standalone function block with a section comment header.
+
+**Carousel factory** — all seamless-loop carousels are initialised by `initCarousel(config)` in [script.js](script.js). Pass element selectors, speed, and (optionally) `cardSelector` + `prevSelector`/`nextSelector` for nudge support. Do **not** write a new standalone carousel function — add a new `initCarousel(…)` call instead. The loop works by duplicating the track group (`aria-hidden="true"` on the copy) and using `requestAnimationFrame` to increment an offset; `recalc()` measures the first group's `getBoundingClientRect().width` as `loopDistance`. Respects `prefers-reduced-motion`.
+
+**Modal helpers** — use `openModal(el, focusTarget?)` and `closeModal(el)` for any overlay that locks body scroll and toggles `aria-hidden`. Register a `el._closeModal` property so the unified Escape-key handler (top of [script.js](script.js)) can close it. Do **not** hand-roll `classList.add('is-open') / setAttribute('aria-hidden')` pairs.
+
+**CONFIG object** — all magic numbers (speeds, timeouts, scroll thresholds) live in `const CONFIG = {…}` at the top of [script.js](script.js). Add new constants there rather than inlining literals.
+
+**Active-nav class** — the currently-active nav link gets `.is-active` toggled by JS (see `ACTIVE NAV LINK ON SCROLL` section). The colour is defined in [styles.css](styles.css) as `.nav-menu a.is-active`. Do **not** write `link.style.color = …` inline.
+
+**SVG sprite** — reusable SVG symbols and shared gradient `<defs>` live in the hidden sprite block at the very top of `<body>` in [index.html](index.html). Reference icons with `<svg><use href="#icon-id"></use></svg>`. Reference the peel gradient with `fill="url(#peel-gradient)"`. Add new symbols/defs to that block instead of inlining them per-element.
 
 ### Internationalization (CZ / EN)
 The site is a **single bilingual page** translated entirely client-side — there is **no second HTML file per language**. Do not create one; that previously caused the two copies to drift out of sync.
