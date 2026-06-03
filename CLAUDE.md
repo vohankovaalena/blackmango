@@ -10,10 +10,11 @@ No build toolchain — open `index.html` directly in a browser.
 
 ## File Structure
 
-- [index.html](index.html) — single-page site with all sections
+- [index.html](index.html) — single-page site with all sections (Czech markup is the source of truth)
+- [translations.js](translations.js) — single source for all UI copy (CZ + EN), loaded before `script.js`
 - [styles.css](styles.css) — all styles (~1400 lines), organized by section with comment headers
-- [script.js](script.js) — all JS (~780 lines), organized by section with comment headers
-- [gdpr.html](gdpr.html) — standalone GDPR/privacy policy page
+- [script.js](script.js) — all JS, organized by section with comment headers
+- [gdpr.html](gdpr.html) — standalone GDPR/privacy policy page (Czech only, no i18n)
 
 Asset directories: `spolupracujeme/` (partner logos), `weby_ukazky/` (web portfolio screenshots), `carousel_digitalni_grafika/` (digital graphics portfolio), `potfolio_branding/` (branding PDFs + preview images), `tiskoviny/` (print materials), `ikony_nase_sluzby/` (service SVG icons), `Nunito_Sans/` (local font files)
 
@@ -40,6 +41,13 @@ Typography: `BlackMango` (custom display font from `Black-Mango-Modern-beauty-fo
 
 ### JS patterns
 All JS is vanilla, no frameworks. Each feature is an IIFE or standalone function block with a section comment header. Seamless carousel loops work by duplicating the track group (`aria-hidden="true"` on the copy) and using `requestAnimationFrame` to increment an offset — `recalc()` measures the first group's `getBoundingClientRect().width` as `loopDistance`. Respects `prefers-reduced-motion`.
+
+### Internationalization (CZ / EN)
+The site is a **single bilingual page** translated entirely client-side — there is **no second HTML file per language**. Do not create one; that previously caused the two copies to drift out of sync.
+
+- **Single source of truth**: Czech markup lives in [index.html](index.html); every translatable string (CZ + EN) lives in [translations.js](translations.js) as `BM_TRANSLATIONS`; language logic lives in `applyLang()` in [script.js](script.js).
+- **To add a translatable string**: put `data-i18n` (text), `data-i18n-html` (innerHTML), `data-i18n-placeholder`, or `data-i18n-aria` (aria-label) on the element in `index.html`, then add the matching CZ + EN keys in `translations.js`. `meta.title` / `meta.description` drive the document title and meta description per language.
+- **Switching**: `applyLang()` swaps content in place — no navigation/reload. The choice persists in `localStorage` (`bm_lang`) and is reflected in the URL as `?lang=en` (shareable). CZ is the default.
 
 ### Image strategy
 Every image has a `.webp` version alongside the original `.png`. Always use `.webp` in HTML for performance. `loading="lazy"` and `decoding="async"` on all below-fold images.

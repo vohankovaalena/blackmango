@@ -6,16 +6,6 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://blackmango.cz/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://blackmango.cz/en/"/>
-  </url>
-  <url>
-    <loc>https://blackmango.cz/en/</loc>
-    <lastmod>2026-06-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://blackmango.cz/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://blackmango.cz/en/"/>
   </url>
   <url>
     <loc>https://blackmango.cz/gdpr.html</loc>
