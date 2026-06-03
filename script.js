@@ -19,6 +19,14 @@ const CONFIG = {
     CAROUSEL_SPEED_PARTNERS: 34,
     CAROUSEL_SPEED_WEB: 26,
     CAROUSEL_SPEED_GRAFIKA: 26,
+    CAROUSEL_SPEED_BRANDING: 26,
+    // Web3Forms public access key. NOTE: this is a public-by-design identifier
+    // (it only permits delivery to the inbox configured at web3forms.com — it is
+    // not a secret credential), so hardcoding it here is safe and required for
+    // the build-less GitHub Pages deploy. Spam is mitigated by the hidden
+    // `botcheck` honeypot field on each form.
+    WEB3FORMS_ACCESS_KEY: '7ec9e00b-a696-425d-9a3e-2deeaf36376e',
+    WEB3FORMS_ENDPOINT: 'https://api.web3forms.com/submit',
 };
 
 /* ===========================
@@ -118,30 +126,47 @@ document.querySelectorAll('.flip-card').forEach(card => {
 });
 
 /* ===========================
-   FORM HANDLING
-   =========================== */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+   FORM HANDLING (Web3Forms)
+   ===========================
+   Both the contact form and the floating chat form post to Web3Forms via this
+   shared helper — there is no backend. The access key lives in CONFIG. Each
+   form carries a hidden `botcheck` honeypot (rejected server-side if filled) and
+   a `subject` so the two sources are distinguishable in the inbox.
+*/
+async function sendViaWeb3Forms(form) {
+    const formData = new FormData(form);
+    formData.append('access_key', CONFIG.WEB3FORMS_ACCESS_KEY);
+
+    const response = await fetch(CONFIG.WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+    });
+    return response.ok;
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const message = this.querySelector('textarea').value;
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
 
-    if (!name || !email || !message) {
-        alert(window.getLangKey('contact.submit') === 'Send Message'
-            ? 'Please fill in all required fields.'
-            : 'Prosím, vyplňte všechna povinná pole.');
-        return;
+    submitBtn.textContent = window.getLangKey('form.sending');
+    submitBtn.disabled = true;
+
+    try {
+        if (await sendViaWeb3Forms(this)) {
+            alert(window.getLangKey('form.success'));
+            this.reset();
+        } else {
+            alert(window.getLangKey('form.error'));
+        }
+    } catch (err) {
+        alert(window.getLangKey('form.error'));
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
     }
-
-    const lang = window.getCurrentLang();
-    if (lang === 'en') {
-        alert(`Thank you, ${name}! We have received your message and will get back to you soon.`);
-    } else {
-        alert(`Děkujeme, ${name}! Vaši zprávu jsme obdrželi a brzy se vám ozveme.`);
-    }
-
-    this.reset();
 });
 
 /* ===========================
@@ -150,7 +175,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#top' || href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -555,6 +585,16 @@ initCarousel({
     speed: CONFIG.CAROUSEL_SPEED_GRAFIKA,
 });
 
+initCarousel({
+    wrapSelector: '.portfolio-branding-carousel',
+    trackSelector: '.portfolio-branding-carousel-track',
+    groupSelector: '.portfolio-branding-carousel-group',
+    prevSelector: '.portfolio-web-carousel-btn-prev',
+    nextSelector: '.portfolio-web-carousel-btn-next',
+    cardSelector: '.portfolio-branding-card',
+    speed: CONFIG.CAROUSEL_SPEED_BRANDING,
+});
+
 /* ===========================
    TISKOVINY LIGHTBOX
    =========================== */
@@ -630,10 +670,28 @@ initCarousel({
     });
 
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const successHtml = window.getLangKey ? window.getLangKey('chat.success') : translations.cz['chat.success'];
-            form.innerHTML = successHtml;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.textContent = window.getLangKey('form.sending');
+            submitBtn.disabled = true;
+
+            try {
+                if (await sendViaWeb3Forms(form)) {
+                    form.innerHTML = window.getLangKey('chat.success');
+                } else {
+                    alert(window.getLangKey('form.error'));
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch (err) {
+                alert(window.getLangKey('form.error'));
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
 }());
@@ -718,26 +776,6 @@ initCarousel({
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
     });
-}());
-
-/* ===========================
-   BRANDING CAROUSEL – PREV / NEXT ARROWS (mobile)
-   =========================== */
-(function () {
-    const grid = document.getElementById('brandingGrid');
-    const prev = document.getElementById('brandingPrev');
-    const next = document.getElementById('brandingNext');
-    if (!grid || !prev || !next) return;
-
-    const scrollBy = (dir) => {
-        const slideWidth = grid.querySelector('.portfolio-slide')
-            ? grid.querySelector('.portfolio-slide').offsetWidth
-            : grid.clientWidth;
-        grid.scrollBy({ left: dir * slideWidth, behavior: 'smooth' });
-    };
-
-    prev.addEventListener('click', () => scrollBy(-1));
-    next.addEventListener('click', () => scrollBy(1));
 }());
 
 /* ===========================

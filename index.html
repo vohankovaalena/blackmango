@@ -421,22 +421,41 @@
             <h2 data-i18n="portfolio.heading">Portfolio</h2>
             <p class="section-subtitle" data-i18n="portfolio.subtitle">Vybrané projekty, na nichž jsme pracovali</p>
             <div class="portfolio-stack">
-                <article class="portfolio-carousel-block">
+                <article class="portfolio-carousel-block portfolio-branding-carousel-block">
                     <h3 class="portfolio-carousel-title" data-i18n="portfolio.branding.title">Značky, kterým jsme vytvořily vizuální identitu</h3>
-                    <div class="portfolio-branding-wrap">
-                        <button class="portfolio-branding-btn portfolio-branding-btn--prev" id="brandingPrev" data-i18n-aria="portfolio.prev.aria" aria-label="Předchozí"><span aria-hidden="true">‹</span></button>
-                        <div class="portfolio-cards-grid" id="brandingGrid">
-                        <button class="portfolio-slide" type="button" data-pdf="assets/docs/p2-check-nem-brand-manual.pdf" data-i18n-aria="portfolio.pdf1.aria" aria-label="Zobrazit náhled PDF portfolio 1">
-                            <img src="assets/portfolio/branding/preview-1.webp" alt="Portfolio branding 1" loading="lazy">
+                    <div class="portfolio-branding-carousel" data-i18n-aria="portfolio.branding.aria" aria-label="Značky, kterým jsme vytvořily vizuální identitu">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-prev" data-i18n-aria="portfolio.prev.aria" aria-label="Předchozí">
+                            <span aria-hidden="true">‹</span>
                         </button>
-                        <button class="portfolio-slide" type="button" data-pdf="assets/docs/nf-helikoptera-brand-guidelines.pdf" data-i18n-aria="portfolio.pdf2.aria" aria-label="Zobrazit náhled PDF portfolio 2">
-                            <img src="assets/portfolio/branding/preview-2.webp" alt="Portfolio branding 2" loading="lazy">
+                        <button type="button" class="portfolio-web-carousel-btn portfolio-web-carousel-btn-next" data-i18n-aria="portfolio.next.aria" aria-label="Další">
+                            <span aria-hidden="true">›</span>
                         </button>
-                        <button class="portfolio-slide" type="button" data-pdf="assets/docs/la-familia-brand-manual.pdf" data-i18n-aria="portfolio.pdf3.aria" aria-label="Zobrazit náhled PDF portfolio 3">
-                            <img src="assets/portfolio/branding/preview-3.webp" alt="Portfolio branding 3" loading="lazy">
-                        </button>
-                    </div>
-                        <button class="portfolio-branding-btn portfolio-branding-btn--next" id="brandingNext" data-i18n-aria="portfolio.next.aria" aria-label="Další"><span aria-hidden="true">›</span></button>
+                        <div class="portfolio-branding-carousel-viewport">
+                            <div class="portfolio-branding-carousel-track">
+                                <div class="portfolio-branding-carousel-group">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/p2-check-nem-brand-manual.pdf" data-i18n-aria="portfolio.pdf1.aria" aria-label="Zobrazit náhled PDF portfolio 1">
+                                        <img src="assets/portfolio/branding/preview-1.webp" alt="Portfolio branding 1" loading="lazy" decoding="async">
+                                    </button>
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/nf-helikoptera-brand-guidelines.pdf" data-i18n-aria="portfolio.pdf2.aria" aria-label="Zobrazit náhled PDF portfolio 2">
+                                        <img src="assets/portfolio/branding/preview-2.webp" alt="Portfolio branding 2" loading="lazy" decoding="async">
+                                    </button>
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/la-familia-brand-manual.pdf" data-i18n-aria="portfolio.pdf3.aria" aria-label="Zobrazit náhled PDF portfolio 3">
+                                        <img src="assets/portfolio/branding/preview-3.webp" alt="Portfolio branding 3" loading="lazy" decoding="async">
+                                    </button>
+                                </div>
+                                <div class="portfolio-branding-carousel-group" aria-hidden="true">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/p2-check-nem-brand-manual.pdf" tabindex="-1">
+                                        <img src="assets/portfolio/branding/preview-1.webp" alt="" loading="lazy" decoding="async">
+                                    </button>
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/nf-helikoptera-brand-guidelines.pdf" tabindex="-1">
+                                        <img src="assets/portfolio/branding/preview-2.webp" alt="" loading="lazy" decoding="async">
+                                    </button>
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/la-familia-brand-manual.pdf" tabindex="-1">
+                                        <img src="assets/portfolio/branding/preview-3.webp" alt="" loading="lazy" decoding="async">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </article>
 
@@ -823,6 +842,9 @@
 
             <div class="contact-content">
                 <form class="contact-form" id="contactForm">
+                    <input type="hidden" name="subject" value="Nová zpráva z kontaktního formuláře — blackmango.cz">
+                    <input type="hidden" name="from_name" value="Black Mango — web">
+                    <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-group">
                         <label for="contact-name" class="sr-only" data-i18n="contact.name.label">Jméno a příjmení</label>
                         <input type="text" id="contact-name" name="name" data-i18n-placeholder="contact.name.placeholder" placeholder="Jméno a příjmení" required autocomplete="name">
@@ -928,6 +950,9 @@
             </div>
             <div class="chat-panel-body">
                 <form class="chat-form" id="chatForm">
+                    <input type="hidden" name="subject" value="Nová zpráva z chatu — blackmango.cz">
+                    <input type="hidden" name="from_name" value="Black Mango — chat">
+                    <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-group">
                         <label for="chat-name" class="sr-only" data-i18n="contact.name.label">Jméno a příjmení</label>
                         <input type="text" id="chat-name" name="name" data-i18n-placeholder="contact.name.placeholder" placeholder="Jméno a příjmení" required autocomplete="name">

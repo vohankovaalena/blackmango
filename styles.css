@@ -793,29 +793,6 @@ a {
     text-align: center;
 }
 
-.portfolio-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-}
-
-.portfolio-cards-grid .portfolio-slide {
-    min-width: 0;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #E5DBCA;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.portfolio-cards-grid .portfolio-slide:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(12, 35, 32, 0.14);
-}
-
-.portfolio-cards-grid .portfolio-slide img {
-    height: clamp(190px, 28vw, 310px);
-}
-
 .portfolio-web-carousel-block {
     padding-bottom: 1.8rem;
 }
@@ -940,54 +917,68 @@ a {
 }
 
 /* ===========================
-   PORTFOLIO – BRANDING CAROUSEL WRAP (mobile arrows)
+   PORTFOLIO – BRANDING CAROUSEL (seamless banner)
    =========================== */
-.portfolio-branding-wrap {
+.portfolio-branding-carousel-block {
+    padding-bottom: 1.8rem;
+}
+
+.portfolio-branding-carousel {
     position: relative;
+    padding: 0 4.25rem;
+}
+
+.portfolio-branding-carousel-viewport {
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.portfolio-branding-carousel-track {
     display: flex;
-    align-items: center;
+    width: max-content;
     gap: 0;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    touch-action: pan-y; /* allow vertical page scroll; JS handles horizontal swipe */
 }
 
-.portfolio-branding-btn {
-    display: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3.2rem;
-    height: 3.2rem;
-    flex-shrink: 0;
-    border-radius: 999px;
-    border: 1px solid rgba(191, 162, 122, 0.45);
-    background: rgba(245, 241, 235, 0.94);
-    color: var(--color-dark);
-    box-shadow: 0 8px 18px rgba(12, 35, 32, 0.14);
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 3;
-    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+.portfolio-branding-carousel-group {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0 1rem 0 0;
 }
 
-.portfolio-branding-btn span {
-    font-size: 2rem;
-    line-height: 1;
-    margin-top: -0.1rem;
-}
-
-.portfolio-branding-btn:hover,
-.portfolio-branding-btn:focus-visible {
-    transform: translateY(-50%) scale(1.04);
+.portfolio-branding-card {
+    flex: 0 0 auto;
+    position: relative;
+    min-width: 0; /* override base .portfolio-slide { min-width: 100% } */
+    /* Fixed height, auto width: each card takes its image's natural aspect
+       ratio, so mixed-size previews sit side by side without cropping. */
+    width: auto;
+    height: clamp(220px, 26vw, 320px);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #E5DBCA;
     background: #fff;
-    box-shadow: 0 12px 24px rgba(12, 35, 32, 0.18);
+    box-shadow: 0 8px 18px rgba(12, 35, 32, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 0;
+    margin: 0;
+    cursor: zoom-in;
 }
 
-.portfolio-branding-btn--prev {
-    left: 0.7rem;
+.portfolio-branding-card img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
-.portfolio-branding-btn--next {
-    right: 0.7rem;
+.portfolio-branding-card:hover,
+.portfolio-branding-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(12, 35, 32, 0.16);
 }
 
 /* ===========================
@@ -1214,6 +1205,16 @@ button.portfolio-grafika-card--lightbox {
 }
 
 @media (max-width: 1024px) {
+    .partners-marquee-track,
+    .partners-marquee-group {
+        gap: 1.4rem;
+    }
+
+    .partner-logo {
+        width: clamp(170px, 52vw, 220px);
+        height: 88px;
+    }
+
     .about {
         background-image: none;
         padding-bottom: 0;
@@ -1470,6 +1471,18 @@ button.portfolio-grafika-card--lightbox {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+/* Web3Forms spam honeypot — hidden from humans, left for bots to trip on.
+   Kept out of layout and the accessibility tree; a filled value is rejected
+   server-side by Web3Forms. */
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .form-group input,
@@ -2051,8 +2064,8 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .partner-logo {
-        width: clamp(200px, 50vw, 256px);
-        height: 104px;
+        width: clamp(170px, 52vw, 220px);
+        height: 88px;
     }
 
     .nav-hamburger {
@@ -2145,8 +2158,8 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .partner-logo {
-        width: 108px;
-        height: 52px;
+        width: clamp(170px, 52vw, 220px);
+        height: 88px;
         border-radius: 10px;
     }
 
@@ -2158,32 +2171,6 @@ button.portfolio-grafika-card--lightbox {
     .carousel-btn {
         width: 36px;
         height: 36px;
-    }
-
-    .portfolio-cards-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        gap: 0;
-        scrollbar-width: none;
-    }
-
-    .portfolio-cards-grid::-webkit-scrollbar {
-        display: none;
-    }
-
-    .portfolio-cards-grid .portfolio-slide {
-        flex: 0 0 100%;
-        scroll-snap-align: center;
-    }
-
-    .portfolio-cards-grid .portfolio-slide img {
-        height: clamp(220px, 58vw, 320px);
-    }
-
-    .portfolio-slide img {
-        height: clamp(220px, 58vw, 320px);
     }
 
     .portfolio-web-card {
@@ -2236,12 +2223,18 @@ button.portfolio-grafika-card--lightbox {
         height: calc(100vw - 40px - 3.2rem);
     }
 
-    .portfolio-branding-btn {
-        display: inline-flex;
+    .portfolio-branding-carousel {
+        padding: 0;
     }
 
-    .portfolio-branding-wrap .portfolio-cards-grid {
-        padding: 0 3.5rem;
+    .portfolio-branding-carousel-group {
+        gap: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .portfolio-branding-card {
+        width: auto;
+        height: clamp(200px, 52vw, 300px);
     }
 
     .pdf-preview-dialog {
