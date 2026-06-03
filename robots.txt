@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Black-Mango-Modern-beauty-font/
+
+Sitemap: https://blackmango.cz/sitemap.xml
