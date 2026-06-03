@@ -272,16 +272,27 @@ a {
     min-height: 70vh;
     border: 1px solid rgba(12, 35, 32, 0.18);
     border-radius: 22px;
-    background-image: url('header_blackmango_desktop.webp');
-    background-size: cover;
-    background-position: center right;
-    background-repeat: no-repeat;
+    background-color: var(--color-light);
     box-shadow: 0 14px 30px rgba(12, 35, 32, 0.16), 0 3px 8px rgba(12, 35, 32, 0.08);
     overflow: hidden;
 }
 
+.hero-photo {
+    position: absolute;
+    right: max(0px, calc(50% - 600px));
+    bottom: 0;
+    height: 108%;
+    width: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
 .hero .container {
     width: 100%;
+}
+
+.hero-content {
+    max-width: 520px;
 }
 
 .hero-content h1 {
@@ -297,15 +308,10 @@ a {
     opacity: 0.9;
 }
 
-.hero-content {
-    max-width: 560px;
-}
-
 .hero-wordmark {
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
     margin-bottom: 1.25rem;
     color: var(--color-dark);
     line-height: 1;
@@ -346,7 +352,6 @@ a {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    text-align: left;
     margin-bottom: 0.75rem;
     color: var(--color-dark);
     width: max-content;
@@ -370,38 +375,6 @@ a {
     color: var(--color-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(12, 35, 32, 0.15);
-}
-
-.hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-logo {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-    display: block;
-    animation: float 3s ease-in-out infinite;
-}
-
-.hero-logo-left {
-    margin-bottom: 1.75rem;
-}
-
-@keyframes pulseMango {
-    0%, 100% {
-        transform: translate(var(--mango-x), -74%) scale(1);
-    }
-    50% {
-        transform: translate(var(--mango-x), -74%) scale(1.12);
-    }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
 }
 
 /* ===========================
@@ -1221,17 +1194,51 @@ button.portfolio-grafika-card--lightbox {
     padding: 6rem 0;
     background-color: var(--color-dark);
     color: var(--color-light);
-    background-image:
-        linear-gradient(to right, var(--color-dark) 35%, rgba(12,35,32,0.85) 58%, rgba(12,35,32,0.0) 85%),
-        url('banner_o_nas.webp');
+    background-image: url('banner_o_nas.webp');
     background-size: cover;
     background-position: 85% center;
     background-repeat: no-repeat;
 }
 
-@media (max-width: 768px) {
+.about-photo {
+    display: none;
+}
+
+@media (max-width: 1024px) {
     .about {
         background-image: none;
+        padding-bottom: 0;
+        text-align: center;
+    }
+
+    .about h2 {
+        text-align: center !important;
+    }
+
+    .about-content {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .about-photo {
+        display: block;
+        width: 100%;
+        line-height: 0;
+        padding: 2rem;
+        box-sizing: border-box;
+    }
+
+    .about-photo picture {
+        display: block;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .about-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 20px;
     }
 }
 
@@ -1302,7 +1309,7 @@ button.portfolio-grafika-card--lightbox {
    REFERENCES SECTION
    =========================== */
 .references {
-    padding: 6rem 0;
+    padding: 3rem 0 6rem;
     background-color: var(--color-dark);
     color: var(--color-light);
 }
@@ -1918,12 +1925,6 @@ button.portfolio-grafika-card--lightbox {
 
 /* --- TABLET (≤1100px) --- */
 @media (max-width: 1100px) {
-    .hero {
-        background-size: 58% auto;
-        background-position: right center;
-        background-color: var(--color-light);
-    }
-
     .peel-corner {
         display: block;
         width: 80px;
@@ -1936,22 +1937,66 @@ button.portfolio-grafika-card--lightbox {
         right: 7px;
     }
 }
+/* --- HERO: stacked layout up to 1100px --- */
+@media (max-width: 1100px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        min-height: unset;
+        padding: 3.5rem 0 0;
+        margin: 0.7rem 0.7rem 0;
+        border-radius: 16px;
+    }
+
+    .hero .container {
+        display: block;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-photo {
+        position: relative;
+        z-index: 0;
+        height: auto;
+        width: 65%;
+        max-width: 440px;
+        margin: -5rem auto 0;
+        display: block;
+    }
+}
+
 @media (max-width: 768px) {
     .peel-corner {
         display: block;
-        width: 96px;
-        height: 96px;
+        width: 80px;
+        height: 80px;
     }
 
     .peel-label {
-        font-size: 0.9rem;
-        bottom: 14px;
-        right: 12px;
+        font-size: 0.62rem;
+        bottom: 10px;
+        right: 8px;
     }
 
     .services-hint .hint-desktop { display: none; }
     .services-hint .hint-mobile  { display: inline; }
+}
 
+@media (max-width: 400px) {
+    .peel-corner {
+        width: 64px;
+        height: 64px;
+    }
+
+    .peel-label {
+        font-size: 0.52rem;
+        bottom: 8px;
+        right: 6px;
+    }
+}
+
+@media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
     }
@@ -1960,39 +2005,27 @@ button.portfolio-grafika-card--lightbox {
         font-size: 1.8rem;
     }
 
-    .hero {
-        min-height: 95vh;
-        padding: 3.5rem 0 72vw;
-        margin: 0.7rem 0.7rem 0;
-        border-radius: 16px;
-        background-image: url('header_blackmango_mobile.webp');
-        background-position: center 130px;
-        background-size: cover;
-        align-items: flex-start;
-    }
-
-    .hero .container {
-        display: block;
+    .hero-photo {
+        width: 75%;
+        max-width: 320px;
+        margin-top: 0;
     }
 
     .hero-wordmark-line {
-        font-size: clamp(3.2rem, 14vw, 5rem);
+        font-size: clamp(3.2rem, 10vw, 5rem);
     }
 
     .hero-wordmark-icon {
-        width: clamp(7rem, 28vw, 11rem);
-    }
-
-    .hero-wordmark-mang {
-        padding-right: clamp(3.5rem, 16vw, 6.5rem);
-    }
-
-    .hero-wordmark-icon {
+        width: clamp(7rem, 20vw, 11rem);
         --mango-x: -1.10em;
     }
 
+    .hero-wordmark-mang {
+        padding-right: clamp(3.5rem, 12vw, 6.5rem);
+    }
+
     .hero-studio-title {
-        font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem);
         margin-bottom: 0.6rem;
     }
 
@@ -2055,12 +2088,13 @@ button.portfolio-grafika-card--lightbox {
     }
 
     .contact-team {
-        gap: 1.5rem;
+        gap: 2rem;
+        justify-content: center;
     }
 
     .contact-team-avatar {
-        width: 140px;
-        height: 140px;
+        width: 190px;
+        height: 190px;
     }
 
     .footer .container {
@@ -2243,18 +2277,38 @@ button.portfolio-grafika-card--lightbox {
 }
 
 /* GDPR consent text under form */
-.form-gdpr-note {
+.form-gdpr-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+.form-gdpr-checkbox input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.15rem;
+    accent-color: var(--color-dark);
+    cursor: pointer;
+}
+.form-gdpr-checkbox label {
     font-size: 0.82rem;
     color: var(--color-dark);
-    opacity: 0.65;
-    margin-top: 0.5rem;
+    opacity: 0.75;
     line-height: 1.5;
+    cursor: pointer;
 }
-.form-gdpr-note a {
+.form-gdpr-checkbox label a {
     color: var(--color-dark);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
-.form-gdpr-note a:hover {
-    opacity: 0.8;
+.form-gdpr-checkbox label a:hover {
+    opacity: 0.7;
+}
+.chat-panel .form-gdpr-checkbox label {
+    color: var(--color-dark);
+}
+.chat-panel .form-gdpr-checkbox label a {
+    color: var(--color-dark);
 }

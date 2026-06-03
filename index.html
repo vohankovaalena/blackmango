@@ -126,6 +126,7 @@
                 <a href="#contact" class="cta-button">Domluvit konzultaci</a>
             </div>
         </div>
+        <img class="hero-photo" src="black_mango_jednatelky.png" alt="" aria-hidden="true" decoding="async">
     </section>
 
     <section class="partners-marquee" aria-label="Spolupracujeme">
@@ -330,7 +331,6 @@
                             <ul class="service-list">
                                 <li>Individuální konzultace na míru</li>
                                 <li>Kurzy zaměřené na práci se sociálními sítěmi</li>
-                                <li>Strategické konzultace 1:1</li>
                             </ul>
                         </div>
                     </div>
@@ -637,6 +637,12 @@
                 </div>
             </div>
         </div>
+        <div class="about-photo" aria-hidden="true">
+            <picture>
+                <source media="(max-width: 768px)" srcset="o_nas/banner_o_nas_mobil.png">
+                <img src="o_nas/banner_o_nas_tablet.png" alt="" loading="lazy" decoding="async">
+            </picture>
+        </div>
     </section>
 
     <!-- References Section -->
@@ -786,8 +792,11 @@
                         <label for="contact-message" class="sr-only">Popis projektu</label>
                         <textarea id="contact-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="5" required></textarea>
                     </div>
+                    <div class="form-gdpr-checkbox">
+                        <input type="checkbox" id="contact-gdpr" name="gdpr" required>
+                        <label for="contact-gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
+                    </div>
                     <button type="submit" class="cta-button">Poslat zprávu</button>
-                    <p class="form-gdpr-note">Odesláním souhlasíte se zpracováním osobních údajů. <a href="gdpr.html" target="_blank" rel="noopener">Zásady ochrany osobních údajů</a>.</p>
                 </form>
 
                 <div class="contact-info">
@@ -888,8 +897,11 @@
                         <label for="chat-message" class="sr-only">Popis projektu</label>
                         <textarea id="chat-message" name="message" placeholder="Popište svůj projekt, co potřebujete, v jakém termínu…" rows="4" required></textarea>
                     </div>
+                    <div class="form-gdpr-checkbox">
+                        <input type="checkbox" id="chat-gdpr" name="gdpr" required>
+                        <label for="chat-gdpr">Souhlasím se zpracováním osobních údajů dle <a href="gdpr.html" target="_blank" rel="noopener">Zásad ochrany osobních údajů</a>.</label>
+                    </div>
                     <button type="submit" class="chat-form-submit">Odeslat zprávu</button>
-                    <p class="form-gdpr-note">Odesláním souhlasíte se zpracováním osobních údajů. <a href="gdpr.html" target="_blank" rel="noopener">Více info</a>.</p>
                 </form>
             </div>
         </div>
