@@ -3,7 +3,7 @@
    =========================== */
 @font-face {
     font-family: 'NunitoSans';
-    src: url('Nunito_Sans/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+    src: url('assets/fonts/nunito-sans/NunitoSans-VariableFont.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
     font-family: 'NunitoSans';
-    src: url('Nunito_Sans/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+    src: url('assets/fonts/nunito-sans/NunitoSans-Italic-VariableFont.ttf') format('truetype');
     font-weight: 100 900;
     font-style: italic;
     font-display: swap;
@@ -19,8 +19,8 @@
 
 @font-face {
     font-family: 'BlackMango';
-    src: url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Regular.woff2') format('woff2'),
-         url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Regular.woff') format('woff');
+    src: url('assets/fonts/black-mango/BlackMango-Regular.woff2') format('woff2'),
+         url('assets/fonts/black-mango/BlackMango-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -28,8 +28,8 @@
 
 @font-face {
     font-family: 'BlackMango';
-    src: url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Medium.woff2') format('woff2'),
-         url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Medium.woff') format('woff');
+    src: url('assets/fonts/black-mango/BlackMango-Medium.woff2') format('woff2'),
+         url('assets/fonts/black-mango/BlackMango-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -37,8 +37,8 @@
 
 @font-face {
     font-family: 'BlackMango';
-    src: url('Black-Mango-Modern-beauty-font/webfont/BlackMango-SemiBold.woff2') format('woff2'),
-         url('Black-Mango-Modern-beauty-font/webfont/BlackMango-SemiBold.woff') format('woff');
+    src: url('assets/fonts/black-mango/BlackMango-SemiBold.woff2') format('woff2'),
+         url('assets/fonts/black-mango/BlackMango-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -46,8 +46,8 @@
 
 @font-face {
     font-family: 'BlackMango';
-    src: url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Bold.woff2') format('woff2'),
-         url('Black-Mango-Modern-beauty-font/webfont/BlackMango-Bold.woff') format('woff');
+    src: url('assets/fonts/black-mango/BlackMango-Bold.woff2') format('woff2'),
+         url('assets/fonts/black-mango/BlackMango-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -55,8 +55,8 @@
 
 @font-face {
     font-family: 'BlackMango';
-    src: url('Black-Mango-Modern-beauty-font/webfont/BlackMango-ExtraBold.woff2') format('woff2'),
-         url('Black-Mango-Modern-beauty-font/webfont/BlackMango-ExtraBold.woff') format('woff');
+    src: url('assets/fonts/black-mango/BlackMango-ExtraBold.woff2') format('woff2'),
+         url('assets/fonts/black-mango/BlackMango-ExtraBold.woff') format('woff');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -1194,7 +1194,7 @@ button.portfolio-grafika-card--lightbox {
     padding: 6rem 0;
     background-color: var(--color-dark);
     color: var(--color-light);
-    background-image: url('o_nas/banner_o_nas.webp');
+    background-image: url('assets/about/banner-desktop.webp');
     background-size: cover;
     background-position: 85% center;
     background-repeat: no-repeat;

@@ -16,7 +16,48 @@ No build toolchain — open `index.html` directly in a browser.
 - [script.js](script.js) — all JS, organized by section with comment headers
 - [gdpr.html](gdpr.html) — standalone GDPR/privacy policy page (Czech only, no i18n)
 
-Asset directories: `spolupracujeme/` (partner logos), `weby_ukazky/` (web portfolio screenshots), `carousel_digitalni_grafika/` (digital graphics portfolio), `potfolio_branding/` (branding PDFs + preview images), `tiskoviny/` (print materials), `ikony_nase_sluzby/` (service SVG icons), `Nunito_Sans/` (local font files)
+### Deployment & SEO files
+
+Root-level files for hosting + search/AI discovery. **Always keep them current** — whenever the domain, pages, services, or contact details change, update these to match (`index.html` / `translations.js` are the source of truth for copy). See [README.md](README.md) for the full maintenance checklist.
+
+- [CNAME](CNAME) — GitHub Pages custom domain (`blackmango.cz`). Don't delete or change without intent; it controls the live domain.
+- [robots.txt](robots.txt) — crawler rules; allows all pages, disallows the licensed-font dir, points to the sitemap.
+- [sitemap.xml](sitemap.xml) — public URLs (home + GDPR). Add a `<url>` entry for any new page; bump `<lastmod>` when a page changes.
+- [llms.txt](llms.txt) — curated Markdown summary for AI assistants / answer engines. Hardcoded Czech; does **not** read from `translations.js`, so update it by hand when services/contact/pages change.
+
+### Vertical slicing (global organizing principle)
+
+The whole project is organized **by page section, not by file type** — each section of the site (hero, partners, services, portfolio, about, contact, …) is treated as a self-contained vertical slice. Apply this everywhere, not just to assets:
+
+- **Markup, styles, and JS** — within [index.html](index.html), [styles.css](styles.css), and [script.js](script.js), keep each section's code grouped together under its own comment header, in the same section order as the page. Don't scatter one section's logic across the file.
+- **Assets** — every section owns a folder under `assets/` (see layout below).
+- **New section** — add it as a contiguous slice in each of `index.html` / `styles.css` / `script.js`, and create its `assets/<section>/` folder. Anything shared across sections is the exception, kept in a `global` slice (`assets/global/`, `:root` CSS variables, shared JS helpers).
+
+**Rule: every change must preserve this vertical-slicing layout.** Put new code/assets in the slice for the section that uses them — never dump section-specific things in a generic bucket or at the repo root.
+
+#### Asset folders (one application of the principle)
+
+All media lives under `assets/`, one folder per section. Shared brand assets go in `assets/global/`.
+
+```
+assets/
+├── global/            cross-section brand assets (logo-main, logo-icon, icon-vector, favicon)
+├── hero/              hero photo
+├── partners/          marquee partner logos
+├── services/          flip-card SVG icons
+├── portfolio/
+│   ├── branding/      PDF preview thumbnails
+│   ├── graphics/      digital-graphics screenshots
+│   ├── web/           website screenshots
+│   └── print/         print-material mockups
+├── about/             responsive banner images (desktop/tablet/mobile)
+├── contact/           team avatar photos
+├── docs/              branding PDFs (opened in the portfolio PDF modal)
+├── fonts/
+│   ├── black-mango/   licensed display font (woff2/woff)
+│   └── nunito-sans/   body variable font (ttf + OFL license)
+└── _unused/           orphaned/archived assets kept for reference, not referenced by the site
+```
 
 ## Architecture
 
@@ -37,7 +78,7 @@ Brand colors are CSS variables in `:root` (see [styles.css:68-74](styles.css#L68
 - `--color-beige: #D6C3A3`
 - `--color-brown: #BFA27A`
 
-Typography: `BlackMango` (custom display font from `Black-Mango-Modern-beauty-font/webfont/`) for headings; `NunitoSans` (local variable font) for body text.
+Typography: `BlackMango` (custom display font from `assets/fonts/black-mango/`) for headings; `NunitoSans` (local variable font from `assets/fonts/nunito-sans/`) for body text.
 
 ### JS patterns
 All JS is vanilla, no frameworks. Each feature is an IIFE or standalone function block with a section comment header. Seamless carousel loops work by duplicating the track group (`aria-hidden="true"` on the copy) and using `requestAnimationFrame` to increment an offset — `recalc()` measures the first group's `getBoundingClientRect().width` as `loopDistance`. Respects `prefers-reduced-motion`.
@@ -56,5 +97,5 @@ Every image has a `.webp` version alongside the original `.png`. Always use `.we
 
 - **No backend / form handler**: the contact form and chat widget currently show an `alert()` or swap content client-side. Any real form submission requires adding a third-party service (e.g., Formspree, EmailJS).
 - **Accessibility**: the site targets WCAG 2.1 AA. Keep `aria-label`, `aria-expanded`, `aria-hidden`, skip-link, and keyboard support intact when editing interactive components.
-- **Czech language**: all user-facing copy is in Czech. Don't translate or change copy without instruction.
-- **No CDN for fonts**: `BlackMango` is a licensed font served locally from `Black-Mango-Modern-beauty-font/webfont/`. Don't reference it from Google Fonts or a CDN.
+- **English identifiers**: all folder names, file names, JS variables/functions, and CSS class & custom-property names must be in English. Only user-facing copy/content is Czech — code and filesystem identifiers are never Czech.
+- **No CDN for fonts**: `BlackMango` is a licensed font served locally from `assets/fonts/black-mango/`. Don't reference it from Google Fonts or a CDN.

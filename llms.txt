@@ -25,4 +25,3 @@ Black Mango Creative Studio tvoří Alena Vohanková a Šárka Měchurová. Stud
 ## Dostupné stránky
 
 - [Hlavní stránka / Main page (CS + EN)](https://blackmango.cz/) — jednostránkový web s přepínačem jazyka CZ/EN (EN: https://blackmango.cz/?lang=en)
-- [GDPR / Zásady ochrany osobních údajů](https://blackmango.cz/gdpr.html)
