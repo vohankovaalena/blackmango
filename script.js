@@ -20,6 +20,10 @@ const CONFIG = {
     CAROUSEL_SPEED_WEB: 26,
     CAROUSEL_SPEED_GRAFIKA: 26,
     CAROUSEL_SPEED_BRANDING: 26,
+    // Below this viewport width the PDF iframe preview is unreliable (mobile
+    // browsers render embedded PDFs without zoom/scroll), so we open the file
+    // in a new tab and let the device's native full-screen viewer handle it.
+    PDF_NATIVE_VIEWER_MAX_WIDTH: 768,
     // Web3Forms public access key. NOTE: this is a public-by-design identifier
     // (it only permits delivery to the inbox configured at web3forms.com — it is
     // not a secret credential), so hardcoding it here is safe and required for
@@ -318,7 +322,18 @@ function buildPdfPreviewUrl(path) {
     return `${encodeURI(path)}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
 }
 
+// Mobile browsers can't render an embedded PDF in an iframe in a usable way
+// (no pinch-zoom/scroll), so on narrow viewports we hand the file off to the
+// device's native full-screen viewer in a new tab instead of the modal.
+function shouldUseNativePdfViewer() {
+    return window.matchMedia(`(max-width: ${CONFIG.PDF_NATIVE_VIEWER_MAX_WIDTH}px)`).matches;
+}
+
 function openPdfPreview(path) {
+    if (shouldUseNativePdfViewer()) {
+        window.open(encodeURI(path), '_blank', 'noopener');
+        return;
+    }
     if (!pdfModal || !pdfFrame) return;
     pdfFrame.src = buildPdfPreviewUrl(path);
     openModal(pdfModal, pdfClose);
