@@ -459,7 +459,7 @@ function initCarousel({ wrapSelector, trackSelector, groupSelector, prevSelector
         carousel.addEventListener('focusin', pause);
         carousel.addEventListener('focusout', resume);
 
-        if (cardSelector && (prevButton || nextButton)) {
+        if (cardSelector) {
             const getStepDistance = () => {
                 const firstCard = groups[0].querySelector(cardSelector);
                 if (!firstCard) return 0;
@@ -577,6 +577,7 @@ initCarousel({
     wrapSelector: '.partners-marquee',
     trackSelector: '.partners-marquee-track',
     groupSelector: '.partners-marquee-group',
+    cardSelector: '.partner-logo',
     speed: CONFIG.CAROUSEL_SPEED_PARTNERS,
 });
 

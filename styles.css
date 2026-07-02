@@ -415,6 +415,7 @@ a {
     gap: 0;
     transform: translate3d(0, 0, 0);
     will-change: transform;
+    touch-action: pan-y;
 }
 
 .partners-marquee-group {
@@ -2061,6 +2062,10 @@ button.portfolio-grafika-card--lightbox {
     .partners-marquee-track,
     .partners-marquee-group {
         gap: 1.4rem;
+    }
+
+    .partners-marquee-group {
+        padding-right: 1.25rem;
     }
 
     .partner-logo {
