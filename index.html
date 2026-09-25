@@ -433,24 +433,24 @@
                         <div class="portfolio-branding-carousel-viewport">
                             <div class="portfolio-branding-carousel-track">
                                 <div class="portfolio-branding-carousel-group">
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/p2-check-nem-brand-manual.pdf" data-i18n-aria="portfolio.pdf1.aria" aria-label="Zobrazit náhled PDF portfolio 1">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/p2-check-nem" data-pages-count="16" data-i18n-aria="portfolio.pdf1.aria" aria-label="Zobrazit náhled PDF portfolio 1">
                                         <img src="assets/portfolio/branding/preview-1.webp" alt="Portfolio branding 1" loading="lazy" decoding="async">
                                     </button>
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/nf-helikoptera-brand-guidelines.pdf" data-i18n-aria="portfolio.pdf2.aria" aria-label="Zobrazit náhled PDF portfolio 2">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/nf-helikoptera" data-pages-count="13" data-i18n-aria="portfolio.pdf2.aria" aria-label="Zobrazit náhled PDF portfolio 2">
                                         <img src="assets/portfolio/branding/preview-2.webp" alt="Portfolio branding 2" loading="lazy" decoding="async">
                                     </button>
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/la-familia-brand-manual.pdf" data-i18n-aria="portfolio.pdf3.aria" aria-label="Zobrazit náhled PDF portfolio 3">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/la-familia" data-pages-count="17" data-i18n-aria="portfolio.pdf3.aria" aria-label="Zobrazit náhled PDF portfolio 3">
                                         <img src="assets/portfolio/branding/preview-3.webp" alt="Portfolio branding 3" loading="lazy" decoding="async">
                                     </button>
                                 </div>
                                 <div class="portfolio-branding-carousel-group" aria-hidden="true">
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/p2-check-nem-brand-manual.pdf" tabindex="-1">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/p2-check-nem" data-pages-count="16" tabindex="-1">
                                         <img src="assets/portfolio/branding/preview-1.webp" alt="" loading="lazy" decoding="async">
                                     </button>
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/nf-helikoptera-brand-guidelines.pdf" tabindex="-1">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/nf-helikoptera" data-pages-count="13" tabindex="-1">
                                         <img src="assets/portfolio/branding/preview-2.webp" alt="" loading="lazy" decoding="async">
                                     </button>
-                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pdf="assets/docs/la-familia-brand-manual.pdf" tabindex="-1">
+                                    <button class="portfolio-branding-card portfolio-slide" type="button" data-pages-dir="assets/portfolio/branding/la-familia" data-pages-count="17" tabindex="-1">
                                         <img src="assets/portfolio/branding/preview-3.webp" alt="" loading="lazy" decoding="async">
                                     </button>
                                 </div>
@@ -922,7 +922,7 @@
         <div class="pdf-preview-backdrop" data-close-pdf="true"></div>
         <div class="pdf-preview-dialog" role="dialog" aria-modal="true" data-i18n-aria="pdf.modal.aria" aria-label="Náhled PDF dokumentu">
             <button type="button" class="pdf-preview-close" id="pdfPreviewClose" data-i18n-aria="pdf.close.aria" aria-label="Zavřít náhled">&#10005;</button>
-            <iframe id="pdfPreviewFrame" title="Náhled PDF" loading="lazy"></iframe>
+            <div class="pdf-preview-pages" id="pdfPreviewPages" tabindex="0"></div>
         </div>
     </div>
 

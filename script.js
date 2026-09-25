@@ -20,10 +20,6 @@ const CONFIG = {
     CAROUSEL_SPEED_WEB: 26,
     CAROUSEL_SPEED_GRAFIKA: 26,
     CAROUSEL_SPEED_BRANDING: 26,
-    // Below this viewport width the PDF iframe preview is unreliable (mobile
-    // browsers render embedded PDFs without zoom/scroll), so we open the file
-    // in a new tab and let the device's native full-screen viewer handle it.
-    PDF_NATIVE_VIEWER_MAX_WIDTH: 768,
     // Web3Forms public access key. NOTE: this is a public-by-design identifier
     // (it only permits delivery to the inbox configured at web3forms.com — it is
     // not a secret credential), so hardcoding it here is safe and required for
@@ -315,41 +311,38 @@ document.addEventListener('keydown', (e) => {
    PORTFOLIO CAROUSEL + PDF PREVIEW
    =========================== */
 const pdfModal = document.getElementById('pdfPreviewModal');
-const pdfFrame = document.getElementById('pdfPreviewFrame');
+const pdfPages = document.getElementById('pdfPreviewPages');
 const pdfClose = document.getElementById('pdfPreviewClose');
 
-function buildPdfPreviewUrl(path) {
-    return `${encodeURI(path)}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
-}
-
-// Mobile browsers can't render an embedded PDF in an iframe in a usable way
-// (no pinch-zoom/scroll), so on narrow viewports we hand the file off to the
-// device's native full-screen viewer in a new tab instead of the modal.
-function shouldUseNativePdfViewer() {
-    return window.matchMedia(`(max-width: ${CONFIG.PDF_NATIVE_VIEWER_MAX_WIDTH}px)`).matches;
-}
-
-function openPdfPreview(path) {
-    if (shouldUseNativePdfViewer()) {
-        window.open(encodeURI(path), '_blank', 'noopener');
-        return;
+// Branding manuals are shown as watermarked page images (not the raw PDF) so
+// visitors get no browser PDF toolbar / download button.
+function openPdfPreview(dir, count) {
+    if (!pdfModal || !pdfPages) return;
+    pdfPages.replaceChildren();
+    for (let i = 1; i <= count; i++) {
+        const img = document.createElement('img');
+        img.src = `${encodeURI(dir)}/page-${String(i).padStart(2, '0')}.webp`;
+        img.alt = '';
+        img.draggable = false;
+        img.decoding = 'async';
+        if (i > 2) img.loading = 'lazy';
+        pdfPages.appendChild(img);
     }
-    if (!pdfModal || !pdfFrame) return;
-    pdfFrame.src = buildPdfPreviewUrl(path);
+    pdfPages.scrollTop = 0;
     openModal(pdfModal, pdfClose);
 }
 
 function closePdfPreview() {
-    if (!pdfModal || !pdfFrame) return;
-    pdfFrame.src = 'about:blank';
+    if (!pdfModal || !pdfPages) return;
+    pdfPages.replaceChildren();
     closeModal(pdfModal);
 }
 
-if (pdfModal && pdfFrame) {
+if (pdfModal && pdfPages) {
     pdfModal._closeModal = closePdfPreview;
 
-    document.querySelectorAll('.portfolio-slide[data-pdf]').forEach(slide => {
-        slide.addEventListener('click', () => openPdfPreview(slide.dataset.pdf));
+    document.querySelectorAll('.portfolio-slide[data-pages-dir]').forEach(slide => {
+        slide.addEventListener('click', () => openPdfPreview(slide.dataset.pagesDir, Number(slide.dataset.pagesCount)));
     });
 
     if (pdfClose) {

@@ -46,13 +46,12 @@ assets/
 ├── partners/          marquee partner logos
 ├── services/          flip-card SVG icons
 ├── portfolio/
-│   ├── branding/      PDF preview thumbnails
+│   ├── branding/      card thumbnails + per-brand folders of watermarked page images (page-NN.webp) shown in the preview modal
 │   ├── graphics/      digital-graphics screenshots
 │   ├── web/           website screenshots
 │   └── print/         print-material mockups
 ├── about/             responsive banner images (desktop/tablet/mobile)
 ├── contact/           team avatar photos
-├── docs/              branding PDFs (opened in the portfolio PDF modal)
 ├── fonts/
 │   ├── black-mango/   licensed display font (woff2/woff)
 │   └── nunito-sans/   body variable font (ttf + OFL license)
@@ -66,7 +65,7 @@ assets/
 2. **Hero** — wordmark with inline SVG icon embedded in "Mango"
 3. **Partners marquee** — infinite CSS-animated scrolling logos (JS `rAF` loop)
 4. **Services** — 4 flip cards (CSS hover + JS click toggle for mobile/keyboard)
-5. **Portfolio** — 3 carousels + branding card grid with PDF modal; tiskoviny lightbox
+5. **Portfolio** — 3 carousels + branding card grid with page-image modal; tiskoviny lightbox
 6. **About, References, FAQ** — accordion FAQ
 7. **Contact** — form (currently `alert()`-only, no backend), floating chat widget (FAB)
 8. **Modals** — PDF preview iframe, image lightbox, exit-intent popup
